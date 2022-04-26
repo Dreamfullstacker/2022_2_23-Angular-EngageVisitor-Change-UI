@@ -1,0 +1,2131 @@
+<!-- <app-user-header></app-user-header> -->
+
+<app-loader></app-loader>
+
+<nav
+  class="navbar navbar-light navbar-expand-md bg-white border-bottom shadow-sm"
+  [@fadeInAnimation]
+>
+  <a
+    class="navbar-brand"
+    [routerLink]="['/login']"
+    style="margin-right: 3.5rem"
+  >
+    <img
+      src="assets/img/logonew.png"
+      class="brand-image"
+      style="height: 50px"
+    />
+    <!-- <span class="brand-text fw3 ">{{appConst?.APPLICATION_NAME}}</span> -->
+    <span class="fw3 fs7 ml-3 all-servey-text">
+      <a [routerLink]="['/form-listing']">All Surveys</a></span
+    >
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsingNavbar3"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+    <!-- <ul class="navbar-nav w-100 justify-content-left">
+            <li class="nav-item active">
+                <a [routerLink]="['/form-listing']" class="nav-link">All
+                    Surveys</a>
+            </li>
+
+
+        </ul> -->
+
+    <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+      <li class="nav-item">
+        <button
+          *ngIf="questionList && questionList?.length != 0"
+          [@fadeInAnimation]
+          class="btn btn-dark btn-sm mt-1 fw3 fs4"
+          data-toggle="tooltip"
+          title="Preview"
+          (click)="preview()"
+        >
+          <i class="far fa-eye"></i>&nbsp;&nbsp;Preview
+        </button>
+        &nbsp;
+      </li>
+      <!-- <li class="nav-item">
+                <button style="background-color: #1f9874c2 !important;" [disabled]="publishUnpublishLoader"
+                    [@fadeInAnimation] class="btn btn-success btn-sm mt-1 fw3 fs4" (click)="publishUnpublishForm()"
+                    *ngIf="form?.visibilityStatus ==
+            appConst?.FORM_VISIBILITY_STATUS.STATUS_UNPUBLISH">Publish
+
+                </button>
+
+                <button [disabled]="publishUnpublishLoader" [@fadeInAnimation]
+                    class="btn btn-danger btn-sm mt-1 fw3 fs4" (click)="publishUnpublishForm()" *ngIf="form?.visibilityStatus ==
+                            appConst?.FORM_VISIBILITY_STATUS.STATUS_PUBLISH">Unpublish
+
+                </button>&nbsp;&nbsp;
+            </li> -->
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link rounded p-2 fw5 text-info mr-3 user-icon"
+          data-toggle="dropdown"
+          href="#"
+        >
+          <!-- <i class="fas fa-user-alt text-info"></i> -->
+          <!-- &nbsp;<i class="fas fa-angle-down m-0 p-0" style="display: inline;"></i> -->
+          <!-- {{initials}} -->
+          <i class="fas fa-user-alt text-info icon" style="display: inline"></i
+          >&nbsp;<i
+            class="fas fa-angle-down m-0 p-0 icon text-info"
+            style="display: inline"
+          ></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <span class="dropdown-item dropdown-item-header fw4 fs5">{{
+            allServ?.authServ?.getLoggedUser()?.email
+          }}</span>
+          <div class="dropdown-divider"></div>
+          <a
+            class="dropdown-item dropdown-item-header point fw4 fs5"
+            [routerLink]="['/settings']"
+          >
+            <i class="fas fa-user-cog mr-2 fs3 text-warning"></i> Settings
+          </a>
+          <div class="dropdown-divider dropdown-divider-header"></div>
+          <a
+            class="dropdown-item dropdown-item-header point fw4 fs5"
+            (click)="showlogout()"
+          >
+            <i class="fas fa-power-off mr-2 fs3 text-danger"></i
+            >&nbsp;&nbsp;Logout
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div
+  class="container-fluid h92 p-0 m-0"
+  [ngStyle]="
+    this.theme && this.theme.font && { 'font-family': this.theme.font }
+  "
+>
+  <div class="row h-100 p-0 m-0">
+    <div
+      class="
+        col-5 col-sm-4 col-md-4 col-lg-3 col-xl-2
+        h-100
+        p-0
+        m-0
+        bg-white
+        border-right
+        sidenav-scroll
+        shadow-lg
+      "
+    >
+      <div class="row py-4 px-4 button-div" [@fadeInAnimation]>
+        <div class="col-12 text-center">
+          <button
+            [disabled]="isPreviewMode"
+            type="button"
+            (click)="showSelectQuestionModel()"
+            [@fadeInAnimation]
+            type="button"
+            class="col-md-12 btn btn-block btn-primary fw4 fs5 text-white"
+            style="height: 125%; width: 87%"
+          >
+            <i class="fa fa-plus-circle align-text-top"></i> Add a Question
+          </button>
+          <!-- <button  type="button" class="btn btn-success btn-block fw4 fs5 add-question-btn"
+                        (click)="showQuestionModal()">
+                        <i class='fas fa-plus fs4'></i> <span class="align-text-top"> Add New Question</span>
+                    </button> -->
+        </div>
+      </div>
+
+      <div
+        *ngIf="form?.welcomePageVisibility == 0"
+        class="row py-3 px-1 question-div"
+        [@fadeInAnimation]
+        [ngClass]="{ 'active-question': pageType == pageTypeConst.welcome }"
+        (click)="showWelcomePage()"
+      >
+        <div class="col-1 fs3 fw4 p-0 text-center"></div>
+        <div
+          class="col-9 fs3 fw4 text-break"
+          style="word-break: break-all !important; padding-top: 6px"
+        >
+          Welcome Page
+        </div>
+
+        <div class="col-2 text-center d-flex justify-content-center fs5 fw4">
+          <button
+            type="button"
+            [disabled]="isPreviewMode"
+            class="btn btn-sm pl-2 pr-2 ml-0 align-middle"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <div
+            class="dropdown-menu"
+            x-placement="bottom-start"
+            style="
+              position: absolute;
+              will-change: transform;
+              top: 0px;
+              left: 0px;
+              transform: translate3d(0px, 38px, 0px);
+            "
+          >
+            <a
+              class="dropdown-item drop-it fw4 fs4 p-3 point"
+              (click)="renameFormModal(form?.id, false)"
+              >Edit</a
+            >
+            <a
+              class="dropdown-item drop-it fw4 fs4 p-3 point"
+              (click)="showDeleteDefaultModal(0)"
+              >Delete</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        cdkDropList
+        class="movableList"
+        cdkDrop
+        (cdkDropListDropped)="dropped($event)"
+      >
+        <div
+          class="row py-3 px-1 question-div"
+          [@fadeInAnimation]
+          [ngClass]="{
+            'active-question':
+              question?.id == quest?.id && pageType == pageTypeConst.question,
+            hidden: true == quest?.hidden
+          }"
+          *ngFor="
+            let quest of questionList;
+            let i = index;
+            let first = first;
+            let last = last
+          "
+          (click)="getQuestionDetails(quest?.id)"
+          cdkDrag
+        >
+          <div class="col-1 fs3 fw4 fw p-0 text-center"></div>
+          <div
+            class="col-9 fs3 fw4 text-break"
+            style="word-break: break-all !important; padding-top: 6px"
+          >
+            <!-- <h3 [innerHTML]="sanatizeInput(quest?.question)"></h3> -->
+            {{ quest?.question }}
+          </div>
+
+          <div class="col-2 text-center d-flex justify-content-center fs5 fw4">
+            <button
+              type="button"
+              class="btn btn-sm pl-2 pr-2 ml-0 align-middle question-option-btn"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div
+              class="dropdown-menu"
+              x-placement="bottom-start"
+              style="
+                position: absolute;
+                will-change: transform;
+                top: 0px;
+                left: 0px;
+                transform: translate3d(0px, 38px, 0px);
+              "
+            >
+              <a
+                class="dropdown-item drop-it fw4 fs4 p-3 point"
+                (click)="hideShowQuestion(quest?.id)"
+                *ngIf="quest?.questionTypeId == 1"
+                >{{ quest.hidden ? "Show" : "Hide" }}</a
+              >
+              <a
+                class="dropdown-item drop-it fw4 fs4 p-3 point"
+                (click)="showQuestionModalForEdit(quest?.id)"
+                >Edit</a
+              >
+              <a
+                class="dropdown-item drop-it fw4 fs4 p-3 point"
+                (click)="showDeleteQuestionModal(quest?.id)"
+                >Delete</a
+              >
+            </div>
+          </div>
+          <ng-container *ngIf="last">
+            {{ set() }}
+          </ng-container>
+        </div>
+      </div>
+
+      <div
+        *ngIf="form?.thanksPageVisibility == 0"
+        class="row py-3 px-1 question-div"
+        [@fadeInAnimation]
+        [ngClass]="{ 'active-question': pageType == pageTypeConst.submitted }"
+        (click)="showClosingPage()"
+      >
+        <div class="col-1 fs3 fw4 p-0 text-center"></div>
+        <div
+          class="col-9 fs3 fw4 text-break"
+          style="word-break: break-all !important; padding-top: 6px"
+        >
+          Thank You Page
+        </div>
+
+        <div
+          class="
+            col-2
+            text-center
+            d-flex
+            justify-content-center
+            text-center
+            fs5
+            fw4
+          "
+        >
+          <button
+            [disabled]="isPreviewMode"
+            type="button"
+            class="btn btn-sm pl-2 ml-0 pr-2"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <div
+            class="dropdown-menu"
+            x-placement="bottom-start"
+            style="
+              position: absolute;
+              will-change: transform;
+              top: 0px;
+              left: 0px;
+              transform: translate3d(0px, 38px, 0px);
+            "
+          >
+            <a
+              class="dropdown-item drop-it fw4 fs4 p-3 point"
+              (click)="renameFormModal(form?.id, true)"
+              >Edit</a
+            >
+            <a
+              class="dropdown-item drop-it fw4 fs4 p-3 point"
+              (click)="showDeleteDefaultModal(1)"
+              >Delete</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-7 col-sm-8 col-md-8 col-lg-9 col-xl-10 h-100 p-3 m-0">
+
+      <!-- <div style="background: red;height: 400px; width: 400px;">{{theme | json }}</div> -->
+
+      <div
+        appUpload
+        (onFileDropped)="uploadFile($event)"
+        class="container-fluid background-d h-100 border"
+        style="border-radius: 20px"
+        [ngStyle]="
+          theme &&
+          theme.bgColor &&
+          !theme?.backgroundType && { 'background-color': theme.bgColor }
+        "
+      >
+        <video
+          *ngIf="theme && theme?.backgroundType == 2 && theme?.bgType"
+          autoplay
+          muted
+          loop
+          id="myVideo"
+          style="width: 96%"
+          class="myVideo"
+          [ngStyle]="
+            this.theme && this.theme.opacity && { opacity: this.theme.opacity }
+          "
+        >
+          <source
+            src="data:{{ theme?.bgType }};base64,{{ theme?.backgroundData }}"
+            type="video/mp4"
+          />
+        </video>
+
+        <img
+          *ngIf="theme && theme?.backgroundType == 1 && theme?.bgType"
+          class="myImage"
+          style="width: 96%"
+          [ngStyle]="
+            this.theme && this.theme.opacity && { opacity: this.theme.opacity }
+          "
+          src="data:{{ theme?.bgType }};base64,{{ theme?.backgroundData }}"
+        />
+
+        <div class="row main-d">
+          <div class="col-12 col-sm-12 col-md-1 col-lg-2 col-xl-2">&nbsp;</div>
+          <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 center-d">
+            &nbsp;
+            <div class="container-fluid m-0 p-0">
+              <div class="row m-0 p-0">
+                <div
+                  class="col-12 m-0 p-0 text-center"
+                  *ngIf="pageType == pageTypeConst.welcome && form"
+                  [@fadeInAnimation]
+                >
+                  <div class="question-d form-simple-scroll">
+                    <h1
+                      class="s-5 fw3"
+                      [ngStyle]="
+                        this.theme &&
+                        this.theme.questionColor && {
+                          color: this.theme.questionColor
+                        }
+                      "
+                      [innerHTML]="sanatizeInput(form?.title)"
+                    ></h1>
+                    <h1
+                      class="s-3 fw3"
+                      [ngStyle]="
+                        this.theme &&
+                        this.theme.questionColor && {
+                          color: this.theme.questionColor
+                        }
+                      "
+                    >
+                      {{ form?.description }}
+                    </h1>
+                  </div>
+
+                  <br />
+                  <!--
+                                    <button type="button" class="btn btn-primary btn-lg btn-flat">START <i
+                                            class="fa fa-angle-double-right"></i></button> -->
+                </div>
+
+                <ng-container
+                  *ngIf="question && pageType == pageTypeConst.question"
+                >
+                  <div
+                    class="col-1 text-right text-primary font-weight-bold"
+                    style="line-height: 2"
+                  >
+                    <i class="fa fa-arrow-right fs3"></i>
+                  </div>
+
+                  <div class="col-11 m-0 p-0">
+                    <div class="container-fluid m-0 p-0">
+                      <div class="row m-0 p-0">
+                        <div class="col-12 m-0 p-0 form-simple-scroll">
+                          <div
+                            class="question text-break text-break fw3 s-3 mb-1"
+                          >
+                            <span
+                              [ngStyle]="
+                                this.theme &&
+                                this.theme.questionColor && {
+                                  color: this.theme.questionColor
+                                }
+                              "
+                              [innerHTML]="question?.question"
+                            >
+                            </span>
+                          </div>
+                          <div
+                            class="description text-break fw3 s-1"
+                            *ngIf="question?.description"
+                          >
+                            <p
+                              [ngStyle]="
+                                this.theme &&
+                                this.theme.questionColor && {
+                                  color: this.theme.questionColor
+                                }
+                              "
+                            >
+                              {{ question?.description }}
+                            </p>
+                            <br />
+                          </div>
+                          <br />
+
+                          <ng-container [ngSwitch]="question?.questionTypeId">
+                            <ng-container
+                              *ngSwitchCase="
+                                appConst.QUESTION_TYPE.SHORT_TEXT_ID
+                              "
+                            >
+                              <div>
+                                <input
+                                  type="text"
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                  placeholder="Type your answer here..."
+                                />
+                              </div>
+                              <br />
+                            </ng-container>
+
+                            <div
+                              *ngSwitchCase="
+                                appConst.QUESTION_TYPE.LONG_TEXT_ID
+                              "
+                            >
+                              <div>
+                                <textarea
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                  rows="3"
+                                  placeholder="Type your answer here..."
+                                ></textarea>
+                              </div>
+                              <br />
+                            </div>
+
+                            <div
+                              *ngSwitchCase="
+                                appConst.QUESTION_TYPE.DROP_DOWN_ID
+                              "
+                            >
+                              <div class="form-group">
+                                <select
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  style="appearance: auto !important"
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                >
+                                  <option [ngValue]="null" class="s-1 fw3">
+                                    Select here...
+                                  </option>
+                                  <option
+                                    class="s-1 fw3"
+                                    [value]="questionOption?.questionOption"
+                                    *ngFor="
+                                      let questionOption of question?.questionOptionDTOList
+                                    "
+                                  >
+                                    {{ questionOption?.questionOption }}
+                                  </option>
+                                  <!-- <option class="s-1 fw3"
+                                                                        [value]="other">Other</option>
+                                                                    </option> -->
+                                </select>
+                              </div>
+                              <br />
+                            </div>
+
+                            <div *ngSwitchCase="appConst.QUESTION_TYPE.RADIO">
+                              <div
+                                class="form-check"
+                                *ngFor="
+                                  let questionOption of question?.questionOptionDTOList
+                                "
+                              >
+                                <div
+                                  *ngIf="
+                                    questionOption?.value?.questionOption !=
+                                      'Other' || question?.otherOpt
+                                  "
+                                >
+                                  <input
+                                    #rdbtn
+                                    ngModel
+                                    [attr.id]="questionOption?.id"
+                                    class="form-check-input radio-input point"
+                                    type="radio"
+                                    name="radio_name"
+                                    [value]="questionOption?.questionOption"
+                                  />
+                                  <label
+                                    [attr.for]="questionOption?.id"
+                                    class="
+                                      form-check-label
+                                      label-d
+                                      point
+                                      fw3
+                                      s-1
+                                      ml-2
+                                    "
+                                    [ngStyle]="
+                                      this.theme &&
+                                      this.theme.answerColor && {
+                                        '-webkit-text-fill-color':
+                                          this.theme.answerColor,
+                                        transform: styleNone
+                                      }
+                                    "
+                                    >{{ questionOption?.questionOption }}</label
+                                  >
+                                  <input
+                                    type="text"
+                                    *ngIf="
+                                      !questionOption.id &&
+                                      rdbtn &&
+                                      rdbtn.checked
+                                    "
+                                    [ngStyle]="
+                                      this.theme &&
+                                      this.theme.answerColor && {
+                                        '-webkit-text-fill-color':
+                                          this.theme.answerColor,
+                                        transform: styleNone
+                                      }
+                                    "
+                                    class="
+                                      form-control form-control-lg
+                                      rounded-0
+                                      input-d
+                                      fw3
+                                      s-1
+                                    "
+                                    placeholder="Type your answer here..."
+                                  />
+                                </div>
+                              </div>
+                              <br />
+                            </div>
+
+                            <div
+                              *ngSwitchCase="
+                                appConst.QUESTION_TYPE.CHECK_BOX_ID
+                              "
+                            >
+                              <div
+                                class="form-check"
+                                *ngFor="
+                                  let questionOption of question?.questionOptionDTOList
+                                "
+                              >
+                                <!-- <label class="b-contain">
+                                                                    <span>First checkbox</span>
+                                                                    <input type="checkbox">
+                                                                    <div class="b-input"></div>
+                                                                </label> -->
+                                <div
+                                  *ngIf="
+                                    questionOption?.value?.questionOption !=
+                                      'Other' || question?.otherOpt
+                                  "
+                                >
+                                  <input
+                                    #otherck
+                                    ngModel
+                                    [attr.id]="questionOption?.id"
+                                    class="
+                                      form-check-input
+                                      checkbox-input
+                                      point
+                                    "
+                                    type="checkbox"
+                                  />
+                                  <label
+                                    [attr.for]="questionOption?.id"
+                                    [ngStyle]="
+                                      this.theme &&
+                                      this.theme.answerColor && {
+                                        '-webkit-text-fill-color':
+                                          this.theme.answerColor,
+                                        transform: styleNone
+                                      }
+                                    "
+                                    class="
+                                      form-check-label
+                                      label-d
+                                      point
+                                      fw3
+                                      s-1
+                                      ml-2
+                                    "
+                                    >{{ questionOption?.questionOption }}</label
+                                  >
+
+                                  <input
+                                    type="text"
+                                    *ngIf="
+                                      !questionOption.id &&
+                                      otherck &&
+                                      otherck.checked
+                                    "
+                                    [ngStyle]="
+                                      this.theme &&
+                                      this.theme.answerColor && {
+                                        '-webkit-text-fill-color':
+                                          this.theme.answerColor,
+                                        transform: styleNone
+                                      }
+                                    "
+                                    class="
+                                      form-control form-control-lg
+                                      rounded-0
+                                      input-d
+                                      fw3
+                                      s-1
+                                    "
+                                    placeholder="Type your answer here..."
+                                  />
+                                </div>
+                              </div>
+                              <br />
+                            </div>
+
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.EMAIL"
+                            >
+                              <div>
+                                <input
+                                  type="email"
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                  placeholder="Type your answer here..."
+                                />
+                              </div>
+                              <br />
+                            </ng-container>
+
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.NUMBER"
+                            >
+                              <div>
+                                <input
+                                  type="number"
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                  placeholder="Type your answer here..."
+                                />
+                              </div>
+                              <br />
+                            </ng-container>
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.COUNTRY"
+                            >
+                              <select
+                                class="
+                                  form-control form-control-lg
+                                  rounded-0
+                                  input-d
+                                  fw3
+                                  s-1
+                                "
+                                style="appearance: auto !important"
+                                name="country"
+                                id="country"
+                                [ngStyle]="
+                                  this.theme &&
+                                  this.theme.answerColor && {
+                                    '-webkit-text-fill-color':
+                                      this.theme.answerColor,
+                                    transform: styleNone
+                                  }
+                                "
+                              >
+                                <option
+                                  value=""
+                                  class="s-1 fw3"
+                                  disabled
+                                  selected
+                                >
+                                  Select Country
+                                </option>
+                                <option
+                                  *ngFor="let country of countries"
+                                  [value]="country.name"
+                                  class="s-1 fw3"
+                                >
+                                  {{ country.name }}
+                                </option>
+                              </select>
+                            </ng-container>
+                            <ng-container
+                              *ngSwitchCase="
+                                appConst.QUESTION_TYPE.PHONE_NUMBER
+                              "
+                            >
+                              <div>
+                                <!-- <input type="text"
+                                                                    class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                    placeholder="Type your answer here..."> -->
+                                <form #f="ngForm" [formGroup]="phoneForm">
+                                  <ngx-intl-tel-input
+                                    [cssClass]="'custom'"
+                                    [preferredCountries]="preferredCountries"
+                                    [enableAutoCountrySelect]="true"
+                                    [enablePlaceholder]="true"
+                                    [searchCountryFlag]="true"
+                                    [searchCountryField]="[
+                                      SearchCountryField.Iso2,
+                                      SearchCountryField.Name
+                                    ]"
+                                    [selectFirstCountry]="false"
+                                    [selectedCountryISO]="CountryISO.India"
+                                    [maxLength]="15"
+                                    [phoneValidation]="true"
+                                    [separateDialCode]="true"
+                                    [numberFormat]="PhoneNumberFormat.National"
+                                    name="phone"
+                                    formControlName="phone"
+                                    class="form-control-lg"
+                                    [ngStyle]="
+                                      this.theme &&
+                                      this.theme.answerColor && {
+                                        '-webkit-text-fill-color':
+                                          this.theme.answerColor,
+                                        transform: styleNone
+                                      }
+                                    "
+                                  >
+                                  </ngx-intl-tel-input>
+                                </form>
+                              </div>
+                              <br />
+                            </ng-container>
+
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.RATING"
+                            >
+                              <div>
+                                <span
+                                  class="star-rating star-5"
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                >
+                                  <input
+                                    type="radio"
+                                    name="rating"
+                                    value="1"
+                                  /><i></i>
+                                  <input
+                                    type="radio"
+                                    name="rating"
+                                    value="2"
+                                  /><i></i>
+                                  <input
+                                    type="radio"
+                                    name="rating"
+                                    value="3"
+                                  /><i></i>
+                                  <input
+                                    type="radio"
+                                    name="rating"
+                                    value="4"
+                                  /><i></i>
+                                  <input
+                                    type="radio"
+                                    name="rating"
+                                    value="5"
+                                  /><i></i>
+                                </span>
+                                <br /><br />
+                              </div>
+                            </ng-container>
+
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.NPS"
+                            >
+                              <div style="width: 522px" class="p-3">
+                                <div class="btn-group m-1">
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    0
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    1
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    2
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    3
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    4
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    5
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    6
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    7
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    8
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    9
+                                  </button>
+                                  <button
+                                    type="button"
+                                    (click)="setNPSFormControlValue()"
+                                    class="
+                                      btn btn-outline-secondary
+                                      m-1
+                                      rounded
+                                    "
+                                  >
+                                    10
+                                  </button>
+                                </div>
+                                <br /><br/>
+                                <div *ngIf ="this.npsSelected">
+                                  <lable  [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}"
+                                  class="form-check-label label-d point fw3 s-1 ml-2">Would you like to add any comment</lable>
+                                  <textarea
+                                      class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                      [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}"
+                                       rows="3"
+                                      placeholder="Type your answer here..."
+                                      formControlName="npsResponse"></textarea>
+                              </div>
+                                <!-- <div class="pl-2 pt-1 pb-4 pr-2 text-white">
+                                                                    <span style="float: right;"
+                                                                        class=" fw3 fs5">Likely</span>
+                                                                    <span style="float: left;" class="fw3 fs5">
+                                                                        Unlikely</span>
+                                                                </div> -->
+                              </div>
+                              <br /><br />
+                            </ng-container>
+
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.STATEMENT"
+                            >
+                              <div></div>
+                            </ng-container>
+                            <ng-container
+                              *ngSwitchCase="appConst.QUESTION_TYPE.DATE"
+                            >
+                              <div>
+                                <input
+                                  type="date"
+                                  class="
+                                    form-control form-control-lg
+                                    rounded-0
+                                    input-d
+                                    fw3
+                                    s-1
+                                  "
+                                  [ngStyle]="
+                                    this.theme &&
+                                    this.theme.answerColor && {
+                                      '-webkit-text-fill-color':
+                                        this.theme.answerColor,
+                                      transform: styleNone
+                                    }
+                                  "
+                                  placeholder="Select Date"
+                                />
+                              </div>
+                              <br />
+                            </ng-container>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 m-0 p-0">
+                      <!-- <ng-container
+                                                *ngIf="question.id != questionList[questionList.length - 1]?.id">
+                                                <button type="button" class="btn btn-primary btn-lg btn-flat">OK
+                                                    <i class='fas fa-check'></i></button>
+                                            </ng-container>
+
+                                            <ng-container
+                                                *ngIf="question.id == questionList[questionList.length - 1]?.id">
+                                                <button type="button" class="btn btn-primary btn-lg btn-flat">SUBMIT <i
+                                                        class='fas fa-check'></i>
+                                                </button>
+                                            </ng-container> -->
+                    </div>
+                  </div>
+                </ng-container>
+
+                <div
+                  class="col-12 m-0 p-0 text-center"
+                  *ngIf="pageType == pageTypeConst.submitted"
+                  [@fadeInAnimation]
+                >
+                  <h1
+                    class="s-5 fw3 text-black-100"
+                    [ngStyle]="
+                      this.theme &&
+                      this.theme.questionColor && {
+                        color: this.theme.questionColor
+                      }
+                    "
+                  >
+                    {{ form?.thankYouMessage }}
+                  </h1>
+                  <br />
+                  <!-- <button type="button" class="btn btn-primary btn-lg btn-flat">AGAIN <i
+                                            class="fa fa-undo"></i></button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-1 col-lg-2 col-xl-2">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="addQuestionModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0">
+        <!-- <h4 class="modal-title fw4 fs7">{{!isQuestionEdit ? 'Add Question' : 'Edit Question'}}</h4> -->
+        <h4 class="modal-title fw4 fs7">{{ questionText }}</h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelQuestionModal()"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div
+        class="modal-body border-0 p-0 pt-3 add-question-scroll pr-2"
+        style="max-height: 500px; overflow-y: scroll"
+      >
+        <form role="form" [formGroup]="questionForm">
+          <div class="card-body p-0">
+            <div class="form-group font-awesome" style="display: none">
+              <!-- <label>Select Question Type</label> -->
+
+              <select
+                class="form-control form-control fw3 fs4 fa"
+                formControlName="questionTypeId"
+                (change)="handleQuestionTypeValueChange()"
+                disabled="true"
+              >
+                <option value="">Select Question Type</option>
+
+                <option
+                  class="fa"
+                  [value]="questionType?.id"
+                  *ngFor="let questionType of questionTypeList"
+                >
+                  <span [innerHTML]="questionType.title"></span>
+                  <span>{{ questionType.display }}</span>
+                </option>
+              </select>
+              <div
+                style="font-size: 10px"
+                class="mt-1 mb-3 px-2"
+                *ngIf="
+                  questionForm.value.questionTypeId ==
+                  appConst.QUESTION_TYPE.NPS
+                "
+              >
+                <div>
+                  <i style="font-size: 10px" class="fa fa-info-circle mr-1"></i
+                  >Help
+                </div>
+                <div>Promoters = respondents giving a 9 or 10 score</div>
+                <div>Passives = respondents giving a 7 or 8 score</div>
+                <div>Detractors = respondents giving a 0 to 6 score</div>
+              </div>
+              <div></div>
+            </div>
+
+            <div class="form-group">
+              <!-- <label>Question</label> -->
+              <input
+                formControlName="question"
+                type="text"
+                ui-iconpicker
+                groups="font-awesome"
+                uib-dropdown-toggle
+                ng-model="iconClass"
+                class="form-control fw3 fs4"
+                placeholder="Enter question here..."
+              />
+
+              <div
+                class="errorMsg fw3 fs3"
+                *ngIf="
+                  questionForm.get('question')?.errors?.required &&
+                  questionForm.get('question').dirty
+                "
+              >
+                Question is required
+              </div>
+              <div
+                class="errorMsg fw3 fs3"
+                *ngIf="
+                  questionForm.get('question')?.errors?.maxlength &&
+                  questionForm.get('question').dirty
+                "
+              >
+                Question should contain minimum 1 and maximum 500 charactor only
+              </div>
+            </div>
+
+            <div class="form-group">
+              <!-- <label>Description</label> -->
+              <textarea
+                formControlName="description"
+                class="form-control fw3 fs4"
+                rows="1"
+                placeholder="Enter description here..."
+              ></textarea>
+              <div
+                class="errorMsg"
+                *ngIf="
+                  questionForm.get('description')?.errors?.maxlength &&
+                  questionForm.get('description').dirty
+                "
+              >
+                Description should contain maximum 500 charactor only
+              </div>
+            </div>
+            <!-- <div class="form-group" *ngIf="questionForm.get('questionTypeId').value ==3">
+
+                            <select class="form-control fw3 fs4" formControlName="jumpQuestion" (ngModelChange)='onJumpSeletct($event)' [(ngModel)]="selectedQuestion">
+                                <option  [ngValue]="null" [selected]="true">Select Next Question</option>
+                                <option *ngFor="let question of questionList"  [ngValue]="question">{{question.title}}</option>
+
+                            </select>
+
+                        </div> -->
+            <ng-container
+              *ngIf="
+                questionForm.value.questionTypeId ==
+                  appConst.QUESTION_TYPE.DROP_DOWN_ID ||
+                questionForm.value.questionTypeId ==
+                  appConst.QUESTION_TYPE.CHECK_BOX_ID ||
+                questionForm.value.questionTypeId ==
+                  appConst.QUESTION_TYPE.RADIO
+              "
+            >
+              <div class="form-group">
+                <!-- <label>Options</label> -->
+                <div class="input-group">
+                  <input
+                    (keypress)="handleKeyPressAddOption($event)"
+                    type="text"
+                    class="form-control form-control fw3 fs4"
+                    formControlName="newQuestionOption"
+                    placeholder="Add new option here.."
+                  />
+                  <!-- <span class="input-group-append">
+                                            <button *ngIf= "questionForm.value.questionTypeId != 4" (click)="showJumpQuestionModal(questionForm.value)" type="button"
+                                                class="btn btn-success fw3 fs4" data-toggle="tooltip"
+                                                title="Add Jump Option"><i class="fas fa-code-branch"></i></button>
+                                        </span> -->
+                  <span class="input-group-append">
+                    <button
+                      (click)="addQuestionOption()"
+                      type="button"
+                      class="btn btn-success fw3 fs4"
+                      data-toggle="tooltip"
+                      title="Add New Option"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </span>
+                </div>
+
+                <div
+                  *ngIf="
+                    questionForm.value.questionTypeId !=
+                    appConst.QUESTION_TYPE.DROP_DOWN_ID
+                  "
+                  class="input-group custom-switch"
+                  style="padding-top: 1%"
+                >
+                  <input
+                    type="checkbox"
+                    class="
+                      form-check-input
+                      checkbox-input
+                      point
+                      custom-control-input
+                    "
+                    id="customSwitches"
+                    formControlName="otherOpt"
+                  />
+                  <label
+                    class="text-muted custom-control-label"
+                    for="customSwitches"
+                  ></label>
+                  <h6>Show Other option</h6>
+                </div>
+              </div>
+
+              <ng-container
+                formArrayName="questionOptionDTOList"
+                *ngFor="
+                  let questionOption of questionForm.controls
+                    .questionOptionDTOList.controls;
+                  let i = index
+                "
+              >
+                <ng-container
+                  [formGroupName]="i"
+                  *ngIf="questionOption?.value?.questionOption != 'Other'"
+                >
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control fw3 fs4"
+                        formControlName="questionOption"
+                      />
+                      <span
+                        *ngIf="questionForm?.value?.questionTypeId != 4"
+                        class="input-group-append"
+                      >
+                        <button
+                          (click)="showJumpQuestionModal(questionForm.value, i)"
+                          type="button"
+                          class="btn btn-success fw3 fs4"
+                          data-toggle="tooltip"
+                          title="Add Jump Option"
+                        >
+                          <i class="fas fa-code-branch"></i>
+                        </button>
+                      </span>
+                      <span class="input-group-append">
+                        <button
+                          (click)="deleteQuestionOption(i)"
+                          type="button"
+                          class="btn btn-danger fw3 fs4"
+                          data-toggle="tooltip"
+                          title="Delete Option"
+                        >
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+
+            <!-- <ng-container
+              *ngIf="
+                questionForm.value.questionTypeId == appConst.QUESTION_TYPE.NPS
+              "
+            >
+              <div class="form-group">
+                <div class="input-group">
+                  <h4 class="modal-title fw4 fs6">
+                    Select Jump Question For Promoters
+                  </h4>
+                </div>
+                <div class="input-group">
+                  <select
+                    id="happy"
+                    (change)="addNpsJump($event, true)"
+                    class="form-control form-control fw3 fs4"
+                    formControlName="happyQuestion"
+                  >
+                    <option [value]="">
+                      Select Jump Question For Promoter
+                    </option>
+                    <option
+                      [value]="quest2.id"
+                      *ngFor="let quest2 of questionList"
+                    >
+                      {{ quest2?.question }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <h4 class="modal-title fw4 fs6">
+                    Select Jump Question For Detractors
+                  </h4>
+                </div>
+                <div class="input-group">
+                  <select
+                    id="unhappy"
+                    class="form-control form-control fw3 fs4"
+                    (change)="addNpsJump($event, false)"
+                    formControlName="unHappyQuestion"
+                  >
+                    <option [value]="">
+                      Select Jump Question For Detractor
+                    </option>
+                    <option
+                      [value]="quest1.id"
+                      *ngFor="let quest1 of questionList"
+                    >
+                      {{ quest1?.question }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </ng-container> -->
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0 p-0 pt-1">
+        <button
+          [disabled]="questionLoader"
+          type="button"
+          class="btn btn-danger fw3 fs4"
+          (click)="cancelQuestionModal()"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="questionLoader || !questionForm.valid"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="submitQuestion()"
+        >
+          {{ questionLoader ? "Saving " : "Save "
+          }}<i *ngIf="questionLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="selectQuestionModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0">
+        <h4 class="modal-title fw4">
+          <!-- {{ !isQuestionEdit ? "Add Question" : "Edit Question" }} -->
+          Choose a question type
+        </h4>
+        <button type="button" class="close fw4 fs10" (click)="cancelQModal()">
+          &times;
+        </button>
+      </div>
+
+      <div
+        class="modal-body border-0 p-8 add-question-scroll"
+        style="
+          max-height: 500px;
+          overflow-y: scroll;
+          padding-left: 0px;
+          padding-right: 0px;
+          padding-top: 40px;
+          padding-bottom: 40px;
+        "
+      >
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+          <div
+            (click)="handleQuestionTypeID(questionType?.id)"
+            *ngFor="let questionType of questionTypeList"
+            class="text-center shadow question-type"
+            data-toggle="tooltip"
+            data-placement="top"
+            [title]="questionType.tooltip"
+          >
+            <span class="text-center" [innerHTML]="questionType.title"></span>
+            <span style="margin-left: 10px" class="mytooltip">
+              {{ questionType.display }}
+
+              <!-- <span class="tooltiptext">
+                <div style="padding: 4px 10px; font-size: 14px">
+                  {{ questionType.tooltip }}
+                </div>
+              </span> -->
+            </span>
+          </div>
+
+          <!-- <div  class="d-flex flex-row flex-wrap" *ngFor="let questionType of questionTypeList" >
+                    <span [innerHTML]= "questionType.title"></span>
+                </div> -->
+        </div>
+
+        <div class="modal-footer border-0 p-0 pt-1" style="padding-top: 20px">
+          <!-- <button (click)="showQuestionModal()" class="btn btn-primary">Hello</button> -->
+          <button
+            [disabled]="questionLoader"
+            type="button"
+            class="btn btn-danger fw3 fs4"
+            (click)="cancelQModal()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="deleteQuestionModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0 pb-3">
+        <h4 class="modal-title modal-title fw4 fs7">Delete this Question?</h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelConfirmModal()"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body border-0 p-0 pb-1">
+        <p class="fw3 fs5">
+          You're about to delete this question.<br />It'll be gone forever and
+          we won't be able to recover it.
+        </p>
+      </div>
+      <div class="modal-footer border-0 p-0">
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-danger fw3 fs4"
+          (click)="cancelConfirmModal()"
+        >
+          Cancel</button
+        >&nbsp;
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="deleteQuestion()"
+        >
+          {{ deleteLoader ? "Deleting " : "Yes, Delete it "
+          }}<i *ngIf="deleteLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="deleteDefaultModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0 pb-3">
+        <h4 class="modal-title modal-title fw4 fs7">
+          Delete this Default Page?
+        </h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelConfirmModal()"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body border-0 p-0 pb-1">
+        <p class="fw3 fs5">
+          You're about to delete this default page.<br />It'll be gone forever
+          and we won't be able to recover it.
+        </p>
+      </div>
+      <div class="modal-footer border-0 p-0">
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-danger fw3 fs4"
+          (click)="cancelConfirmModal()"
+        >
+          Cancel</button
+        >&nbsp;
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="deleteDefaultPage()"
+        >
+          {{ deleteLoader ? "Deleting " : "Yes, Delete it "
+          }}<i *ngIf="deleteLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="formCreateModal2">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0 pb-3">
+        <h4 class="modal-title fw4 fs7" *ngIf="isThankYou">
+          &nbsp;{{ "Edit ThankYou Page" }}
+        </h4>
+        <h4 class="modal-title fw4 fs7" *ngIf="!isThankYou">
+          &nbsp;{{ "Edit Welcome Page" }}
+        </h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelFormModal()"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="modal-body border-0 p-0 pb-1">
+        <form [formGroup]="formForm">
+          <div class="form-group" *ngIf="!isThankYou">
+            <!-- <label class="text-muted">Title</label> -->
+            <input
+              [attr.disabled]="formLoader ? '' : null"
+              (keypress)="handleKeyPressFormRename($event)"
+              type="text"
+              class="form-control fw3 fs4"
+              placeholder="Add a title here.."
+              formControlName="title"
+            />
+            <!--
+                            <button type="button" id="GetIconPicker" data-iconpicker-input="input#IconInput" data-iconpicker-preview="i#IconPreview">Select Icon</button> -->
+
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('title')?.errors?.required &&
+                formForm.get('title').dirty
+              "
+            >
+              Title is required
+            </div>
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('title')?.errors?.maxlength &&
+                formForm.get('title').dirty
+              "
+            >
+              Title should contain minimum 1 and maximum 500 charactor
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="isThankYou">
+            <!-- <label class="text-muted">Title</label> -->
+            <input
+              [attr.disabled]="formLoader ? '' : null"
+              (keypress)="handleKeyPressFormRename($event)"
+              type="textarea"
+              class="form-control fw3 fs4"
+              placeholder="Add a Message here.."
+              formControlName="thankYouMessage"
+            />
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('thankYouMessage')?.errors?.maxlength &&
+                formForm.get('thankYouMessage').dirty
+              "
+            >
+              Message should contain maximum 500 only.
+            </div>
+            <br/>
+            <input
+              [attr.disabled]="formLoader ? '' : null"
+              
+              type="text"
+              class="form-control fw3 fs4"
+              placeholder="Add a Redirect https url"
+              formControlName="redirectUrl"
+            />
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('redirectUrl')?.errors &&
+                formForm.get('redirectUrl').dirty
+              "
+            >
+             Redirect url seems invalid.
+            </div>
+
+          </div>
+
+          <div class="form-group" *ngIf="!isThankYou">
+            <!-- <label class="text-muted">Textarea</label> -->
+            <textarea
+              [attr.disabled]="formLoader ? '' : null"
+              (keypress)="handleKeyPressFormRename($event)"
+              class="form-control fw3 fs4"
+              rows="1"
+              placeholder="Add a welcome message for your audience..."
+              formControlName="description"
+            ></textarea>
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('description')?.errors?.maxlength &&
+                formForm.get('description').dirty
+              "
+            >
+              Description should contain maximum 500 only.
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer border-0 p-0">
+        <button
+          [disabled]="formLoader"
+          type="button"
+          class="btn btn-danger fw3 fs4"
+          (click)="cancelFormModal()"
+        >
+          Cancel
+        </button>
+        <button
+          [disabled]="formLoader || !formForm.valid"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="submitForm()"
+        >
+          {{ formLoader ? "Saving " : "Save "
+          }}<i *ngIf="formLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="jumpQuestionModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0">
+        <h4 class="modal-title fw4 fs7">Add Jump Question</h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelJumpModal()"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div
+        class="modal-body border-0 p-0 pt-3 add-question-scroll pr-2"
+        style="max-height: 500px; overflow-y: scroll"
+      >
+        <form role="form" [formGroup]="JumpQuestion">
+          <div class="card-body p-0">
+            <div class="form-group">
+              <!-- <label>Select Question Type</label> -->
+              <select
+                class="form-control form-control fw3 fs4"
+                formControlName="jumpQuestionId"
+                (change)="addJumpQuestion($event)"
+                [value]="selectedQuestOpt"
+              >
+                <option value="">Select Next Question</option>
+                <option [value]="quest.id" *ngFor="let quest of questionList">
+                  {{ quest?.question }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fixed-plugin">
+  <div class="dropdown show-dropdown open show">
+    <a href="#" data-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-cog fa-2x"> </i>
+    </a>
+
+    <ul
+      class="dropdown-menu hide"
+      x-placement="bottom-start"
+      style="
+        position: absolute;
+        top: 41px;
+        left: -236px;
+        height: 550px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+      "
+    >
+      <li class="header-title">
+        <!-- <button
+          class="btn btn-success fw3 fs4"
+          style="float: left"
+          (click)="saveTheme()"
+        >
+          Save<i *ngIf="themeLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button> -->
+        <button class="btn btn-success fw3 fs4" (click)="removeTheme()">
+          Switch To Default<i
+            *ngIf="themeLoader"
+            class="fas fa-circle-notch fa-spin"
+          ></i>
+        </button>
+        <div class="clearfix"></div>
+        <div class="ripple-container"></div>
+      </li>
+
+      <!-- <li class="header-title" style="margin-top: 10px;">Select Font</li>
+              <li class="adjustments-line" >
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+
+                      <span></span>
+                          <div class="col-6">
+                              <div [(fontPicker)]="theme.font" [fpWidth]="'320px'" [fpAutoLoad]="true" [fpSearchText]="theme.font" [fpPosition]="'bottom'" [fpSizeSelect] ="false" [fpStyleSelect] ="false"  (fontPickerChange)="changeFonts($event)">
+                                  Click to open the font picker
+                                </div>
+                          </div>
+
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li> -->
+
+      <!--  <li class="header-title" style="margin-top: 10px;">Background Color</li>
+              <li class="adjustments-line" >
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+                      <div class="ml-auto mr-auto">
+                          <button class="badge filter badge-purple" [ngClass]="{'active': theme && theme.backgroundColor == 'purple'}" data-color="purple" (click)="updateBackgroundColor('purple')"></button>
+                          <button class="badge filter badge-black" [ngClass]="{'active':  theme && theme.backgroundColor == 'black'}" data-color="black" (click)="updateBackgroundColor('black')"></button>
+                          <button class="badge filter badge-green" [ngClass]="{'active':  theme && theme.backgroundColor == 'green'}" data-color="green" (click)="updateBackgroundColor('green')"></button>
+                          <button class="badge filter badge-orange" [ngClass]="{'active':  theme && theme.backgroundColor == 'orange'}" data-color="orange" (click)="updateBackgroundColor('orange')"></button>
+                          <button class="badge filter badge-yellow" [ngClass]="{'active':  theme && theme.backgroundColor == 'yellow'}" data-color="yellow" (click)="updateBackgroundColor('yellow')"></button>
+                          <button   class="btn bg-transparent"   [(colorPicker)]="theme.backgroundColor" [cpWidth] ="140" (colorPickerChange)="updateBackgroundColor($event)"><i
+                              class="fa fa-plus-circle align-text-top"></i></button>
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li>
+
+
+
+
+
+              <li class="header-title">
+                   Question Color</li>
+              <li class="adjustments-line">
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+                      <div class="ml-auto mr-auto">
+                          <button class="badge filter badge-purple" [ngClass]="{'active':  theme && theme.questionColor == 'purple'}" data-color="purple" (click)="updateQuestionColor('purple')"></button>
+                          <button class="badge filter badge-black" [ngClass]="{'active':  theme && theme.questionColor == 'black'}" data-color="black" (click)="updateQuestionColor('black')"></button>
+                          <button class="badge filter badge-green" [ngClass]="{'active':  theme && theme.questionColor == 'green'}" data-color="green" (click)="updateQuestionColor('green')"></button>
+                          <button class="badge filter badge-orange" [ngClass]="{'active':  theme && theme.questionColor == 'orange'}" data-color="orange" (click)="updateQuestionColor('orange')"></button>
+                          <button class="badge filter badge-yellow" [ngClass]="{'active':  theme && theme.questionColor == 'yellow'}" data-color="yellow" (click)="updateQuestionColor('yellow')"></button>
+                          <button   class="btn bg-transparent"   [(colorPicker)]="theme.questionColor"  [cpWidth] ="140"  (colorPickerChange)="updateQuestionColor($event)"><i
+                              class="fa fa-plus-circle align-text-top"></i></button>
+
+
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li>
+
+              <li class="header-title">Answer Color</li>
+              <li class="adjustments-line">
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+                      <div class="ml-auto mr-auto">
+                          <button class="badge filter badge-purple" [ngClass]="{'active':  theme && theme.answerColor == 'purple'}" data-color="purple" (click)="updateAnswerColor('purple')"></button>
+                          <button class="badge filter badge-black" [ngClass]="{'active':  theme && theme.answerColor == 'black'}" data-color="black" (click)="updateAnswerColor('black')"></button>
+                          <button class="badge filter badge-green" [ngClass]="{'active':  theme && theme.answerColor == 'green'}" data-color="green" (click)="updateAnswerColor('green')"></button>
+                          <button class="badge filter badge-orange" [ngClass]="{'active':  theme && theme.answerColor == 'orange'}" data-color="orange" (click)="updateAnswerColor('orange')"></button>
+                          <button class="badge filter badge-yellow" [ngClass]="{'active':  theme && theme.answerColor == 'yellow'}" data-color="yellow" (click)="updateAnswerColor('yellow')"></button>
+                          <button   class="btn bg-transparent"   [(colorPicker)]="theme.answerColor"  [cpWidth] ="140"  (colorPickerChange)="updateAnswerColor($event)"><i
+                              class="fa fa-plus-circle align-text-top"></i></button>
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li>
+
+              <li class="header-title">Button Color</li>
+              <li class="adjustments-line">
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+                      <div class="ml-auto mr-auto">
+                          <button class="badge filter badge-purple" [ngClass]="{'active':  theme && theme.buttonColor == 'purple'}" data-color="purple" (click)="updateButtonColor('purple')"></button>
+                          <button class="badge filter badge-black" [ngClass]="{'active':  theme && theme.buttonColor == 'black'}" data-color="black" (click)="updateButtonColor('black')"></button>
+                          <button class="badge filter badge-green" [ngClass]="{'active':  theme && theme.buttonColor == 'green'}" data-color="green" (click)="updateButtonColor('green')"></button>
+                          <button class="badge filter badge-orange" [ngClass]="{'active':  theme && theme.buttonColor == 'orange'}" data-color="orange" (click)="updateButtonColor('orange')"></button>
+                          <button class="badge filter badge-yellow" [ngClass]="{'active':  theme && theme.buttonColor == 'yellow'}" data-color="yellow" (click)="updateButtonColor('yellow')"></button>
+                          <button   class="btn bg-transparent"   [(colorPicker)]="theme.buttonColor"  [cpWidth] ="140"  (colorPickerChange)="updateButtonColor($event)"><i
+                              class="fa fa-plus-circle align-text-top"></i></button>
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li>
+
+              <li class="header-title">Button Text Color</li>
+              <li class="adjustments-line">
+                  <a href="javascript:void(0)" class="switch-trigger active-color">
+                      <div class="ml-auto mr-auto">
+                          <button class="badge filter badge-purple" [ngClass]="{'active':  theme && theme.buttonTextColor == 'purple'}" data-color="purple" (click)="updateButtonTextColor('purple')"></button>
+                          <button class="badge filter badge-black" [ngClass]="{'active':  theme && theme.buttonTextColor == 'black'}" data-color="black" (click)="updateButtonTextColor('black')"></button>
+                          <button class="badge filter badge-green" [ngClass]="{'active':  theme && theme.buttonTextColor == 'green'}" data-color="green" (click)="updateButtonTextColor('green')"></button>
+                          <button class="badge filter badge-orange" [ngClass]="{'active':  theme && theme.buttonTextColor == 'orange'}" data-color="orange" (click)="updateButtonTextColor('orange')"></button>
+                          <button class="badge filter badge-yellow" [ngClass]="{'active':  theme && theme.buttonTextColor == 'yellow'}" data-color="yellow" (click)="updateButtonTextColor('yellow')"></button>
+                          <button   class="btn bg-transparent"   [(colorPicker)]="theme.buttonTextColor"  [cpWidth] ="140"  (colorPickerChange)="updateButtonTextColor($event)"><i
+                              class="fa fa-plus-circle align-text-top"></i></button>
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="ripple-container"></div></a>
+              </li> -->
+      <li
+        class="header-title fs3 fw5 mb-2"
+        style="margin-top: 20px; text-decoration: 4px solid underline blue"
+      >
+        Color Themes
+      </li>
+
+      <li
+        *ngFor="let color of colorArray; let i = index"
+        class="mb-2"
+        style="width: 100%"
+      >
+
+
+        <div class="px-2 pb-2 text-center fs3 fw4">
+          {{ color.themeName }}
+          <!-- {{
+            color.background.charAt(0).toUpperCase() +
+              color.background.slice(1)
+          }}
+          Theme -->
+        </div>
+        <a href="javascript:void(0)" (click)="updateBackgroundColor($event,color)" class="switch-trigger">
+          <div
+            style="
+              height: 154px;
+              padding: 36px 18px 18px 18px;
+              border-radius: 10px;
+            "
+            class="px-5 text-center fs3 fw4"
+            [style.background-color]="color.background"
+          >
+            <div [style.color]="color.buttonColor">Button Color</div>
+            <div [style.color]="color.buttonTextColor">Button Text</div>
+            <div [style.color]="color.questionColor">Question</div>
+            <div [style.color]="color.answerColor">Answer</div>
+          </div>
+        </a>
+
+      </li>
+      <li class="adjustments-line mt-4">
+        <div style="display: flex">
+          <a href="javascript:void(0)" class="switch-trigger mr-3 active-color">
+            <div
+              class="custom-control"
+              style="display: inline; padding-left: 0px"
+            >
+              <input
+                type="checkbox"
+                id="customSwitches"
+                [(ngModel)]="theme.showQuestionNumber"
+              />
+              <!-- <label class="custom-control-label" for="customSwitches"></label> -->
+            </div>
+            <div class="clearfix"></div>
+            <div class="ripple-container"></div
+          ></a>
+
+          <div>Show Question Number</div>
+        </div>
+
+        <!-- <a href="javascript:void(0)" class="switch-trigger ml-3 active-color">
+          <div class="custom-control custom-switch" style="display: inline">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customSwitches"
+              [(ngModel)]="theme.showQuestionNumber"
+            />
+            <label class="custom-control-label" for="customSwitches"></label>
+          </div>
+          <div class="clearfix"></div>
+          <div class="ripple-container"></div
+        ></a> -->
+      </li>
+
+      <li
+        class="header-title scrollImage"
+        style="
+          height: 50px !important;
+          text-align: left;
+          margin: 10px 0px;
+          margin-bottom: 0px;
+        "
+      >
+        <button
+          class="btn bg-transparent"
+          (click)="fileInput.click()"
+          style="padding: 0px"
+        >
+          <i class="fa fa-plus-circle align-text-top"></i>
+          Add your own image
+        </button>
+        <input
+          type="file"
+          style="visibility: hidden"
+          id="imageUpload"
+          accept=".png, .jpg, .jpeg"
+          #fileInput
+          (change)="uploadFile($event)"
+        />
+      </li>
+      <li class="scrollImage">
+        <a
+          class="img-holder switch-trigger"
+          (click)="SetBackGround('./assets/img/sidebar-1.jpg')"
+          href="javascript:void(0)"
+        >
+          <img src="./assets/img/sidebar-1.jpg" alt="" />
+        </a>
+      </li>
+      <li class="scrollImage">
+        <a
+          class="img-holder switch-trigger"
+          (click)="SetBackGround('./assets/img/sidebar-2.jpg')"
+          href="javascript:void(0)"
+        >
+          <img src="./assets/img/sidebar-2.jpg" alt="" />
+          <div class="ripple-container"></div
+        ></a>
+      </li>
+
+      <li class="scrollImage">
+        <a
+          class="img-holder switch-trigger"
+          (click)="SetBackGround('./assets/img/sidebar-4.jpg')"
+          href="javascript:void(0)"
+        >
+          <img src="./assets/img/sidebar-4.jpg" alt="" />
+        </a>
+      </li>
+
+      <li
+        class="header-title scrollImage"
+        style="
+          height: 50px !important;
+          text-align: left;
+          margin: 10px 0px;
+          margin-bottom: 0px;
+        "
+      >
+        <a
+          class="img-holder switch-trigger"
+          (click)="resetImage()"
+          href="javascript:void(0)"
+          style="text-align: left; font-size: 14px; cursor: pointer"
+        >
+          Remove Background Image
+          <!-- <img src="./assets/img/blankImage.jpg" alt="" /> -->
+        </a>
+      </li>
+
+      <!-- *ngIf="theme.backgroundData" -->
+      <li class="header-title" style="text-align: left">
+        <div>Image transparency</div>
+      </li>
+
+      <li class="adjustments-line">
+        <a href="javascript:void(0)" class="switch-trigger active-color">
+          <div style="line-height: 2.3">
+            <input
+              type="range"
+              class="form-range"
+              min="0"
+              max="1.0"
+              step="0.1"
+              [(ngModel)]="theme.opacity"
+              value="theme.opacity"
+              id="customRange1"
+              (change)="opacityChange($event)"
+              style="width: 100%"
+            />{{ theme.opacity }}
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="logoutmodalform">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-round p-4">
+          <div class="modal-header border-0 p-0 pb-3">
+              <h4 class="modal-title modal-title fw4 fs12">Are you sure you want to logout?
+              </h4>
+              <button type="button" class="close fw4 fs10" (click)="cancelQuestionModalnew()" >&times;</button>
+          </div>
+          <!-- <div class=" modal-body border-0 p-0 pb-1">
+              <p class="fw3 fs8">You're about to logout this survey's user.<br />It'll be gone to login and you have to login again.
+              </p>
+          </div> -->
+          <div class="modal-footer border-0 p-0">
+              <!-- <button  type="button" class="btn btn-danger fw3 fs4"
+                 (click)="cancelQuestionModal()" >Cancel</button>&nbsp; -->
+              <button [disabled]="deleteLoader" type="button" class="btn btn-danger fw3 fs4"
+                  (click)="logout()">{{deleteLoader ? 'Logouting ' : 'Yes, Logout                    it '}}<i *ngIf="deleteLoader" class="fas fa-circle-notch fa-spin"></i></button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="card-header">
+    <h3>Custimize your theme
+    <button type="button" class="close fw4 fs10" (click)="cancelThemeModal()">&times;</button>
+</h3>
+    
+</div>
+<div class="card-body">
+
+    <div class="container-fluid">
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Change Font &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div [(fontPicker)]="theme.font" [fpWidth]="'320px'" [fpAutoLoad]="true" [fpSearchText]="theme.font" [fpPosition]="'bottom'" [fpSizeSelect] ="false" [fpStyleSelect] ="false"  (fontPickerChange)="changeFonts($event)">
+                    Click to open the font picker
+                  </div>
+            </div>
+        </div>
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Background Color &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div>
+                    <input   [disabled]= "theme.backgroundData"[(colorPicker)]="theme.bgColor"  (colorPickerChange)="updateBackGroundColor($event)" [style.background]="theme.bgColor"/>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Question Color &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div>
+                    <input [(colorPicker)]="theme.questionColor" (colorPickerChange)="updateQuestionColor($event)" [style.background]="theme.questionColor"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Answer Color &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div>
+                    <input [(colorPicker)]="theme.answerColor" (colorPickerChange)="updateAnswerColor($event)" [style.background]="theme.answerColor"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Button Color &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div>
+                    <input [(colorPicker)]="theme.buttonColor"  (colorPickerChange)="updateButtonColor($event)" [style.background]="theme.buttonColor"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Button Text Color &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div>
+                    <input [(colorPicker)]="theme.buttonTextColor"   (colorPickerChange)="updateButtonTextColor($event)" [style.background]="theme.buttonTextColor"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fw3 fs5">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Show Question Number &nbsp;</span>
+            </div>
+            <div class="col-6">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitches" [(ngModel)]="theme.showQuestionNumber">
+                    <label class="custom-control-label" for="customSwitches"></label>
+                  </div>
+            </div>
+        </div>
+
+        <div class="row fw3 fs5">
+             <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Background Image &nbsp;</span>
+            </div>
+            <div class="col-6">
+                 <button type="submit" class="btn btn-primary btn-sm btn-block" (click)="fileInput.click()">Upload Image</button>
+                <input type='file' style="visibility: hidden;" id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+               
+            </div>
+                      </div>
+
+
+        <div class="row fw3 fs5" *ngIf="theme.backgroundData">
+            <div class="col-6" style="line-height: 2.3;">
+                <span class="badge bg-primary p-1 fw3 fs2">
+                    &nbsp;&nbsp;&nbsp;Background Image Opacity &nbsp;</span>
+            </div>
+            <div class="col-6">
+                    <input type="range" class="form-range" min="0" max="1.0" step="0.1" [(ngModel)]="theme.opacity" value="theme.opacity" id="customRange1" (change)="opacityChange($event)" />{{theme.opacity}}
+            </div>
+           
+        </div>
+
+      
+    </div>
+
+</div>
+
+<div class="card-footer">
+    <button class="btn btn-success fw3 fs4" (click)="saveTheme()">Save<i *ngIf="themeLoader" class="fas fa-circle-notch fa-spin"></i></button>
+    
+    
+</div>

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Survey Project</title>
+  <base href=".">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="assets/dist/css/adminlte.min.css"> -->
+  <!-- <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css"> -->
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/coliff/bootstrap-rfs/bootstrap-rfs.css">
+  <style>
+    .btn.btn-flat {
+      border-radius: 0;
+      border-width: 1px;
+      box-shadow: none;
+    }
+  </style>
+
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <!-- <link rel="stylesheet" href="assetsplugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+  <!-- iCheck -->
+  <!-- <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> -->
+  <!-- JQVMap -->
+  <!-- <link rel="stylesheet" href="assets/plugins/jqvmap/jqvmap.min.css"> -->
+  <!-- Theme style -->
+  <!-- overlayScrollbars -->
+  <!-- <link rel="stylesheet" href="assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
+  <!-- summernote -->
+  <!-- <link rel="stylesheet" href="assets/plugins/summernote/summernote-bs4.css"> -->
+
+  <style>
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+  <app-root></app-root>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
+
+  <script src="assets/jquery-read-more.min.js"></script>
+
+  <!-- <script src="assets/dist/js/adminlte.js"></script>
+  <script src="assets/jquery-read-more.min.js"></script>
+  <script src="assets/plugins/CSVExport.js"></script> -->
+
+  <!-- <script src="assets/plugins/jquery/jquery.min.js"></script> -->
+  <!-- jQuery UI 1.11.4 -->
+  <!-- <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script> -->
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <!-- <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script> -->
+  <!-- Bootstrap 4 -->
+  <!-- <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+  <!-- ChartJS -->
+  <!-- <script src="assets/plugins/chart.js/Chart.min.js"></script> -->
+  <!-- Sparkline -->
+  <!-- <script src="assets/plugins/sparklines/sparkline.js"></script> -->
+  <!-- JQVMap -->
+  <!-- <script src="assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+  <script src="assets/plugins/jqvmap/maps/jquery.vmap.world.js"></script> -->
+  <!-- jQuery Knob Chart -->
+  <!-- <script src="assets/plugins/jquery-knob/jquery.knob.min.js"></script> -->
+  <!-- daterangepicker -->
+  <!-- <script src="assets/plugins/moment/moment.min.js"></script> -->
+  <!-- <script src="assets/plugins/daterangepicker/daterangepicker.js"></script> -->
+  <!-- Tempusdominus Bootstrap 4 -->
+  <!-- <script src="assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
+  <!-- Summernote -->
+  <!-- <script src="assets/plugins/summernote/summernote-bs4.min.js"></script> -->
+  <!-- overlayScrollbars -->
+  <!-- <script src="assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script> -->
+  <!-- FastClick -->
+  <!-- <script src="assets/plugins/fastclick/fastclick.js"></script> -->
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="assets/dist/js/pages/dashboard.js"></script> -->
+  <!-- AdminLTE for demo purposes -->
+  <!-- <script src="assets/dist/js/demo.js"></script> -->
+
+  <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+  <script type="text/javascript">
+    Paddle.Setup({ vendor: 132578});
+
+  </script>
+
+<style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  </style>
+
+<!-- <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"b529a90ed381cb5c3c3d6c989c00e56de50570212be7212ebd7272ac8b393ef444a6fdced17684834d4179c1f6085918", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.in/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>");</script> -->
+
+<!-- Start of Async Drift Code -->
+<script>
+  function chatWindow() {
+    var t = window.driftt = window.drift = window.driftt || [];
+    if (!t.init) {
+      if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+      t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+      t.factory = function(e) {
+        return function() {
+          var n = Array.prototype.slice.call(arguments);
+          return n.unshift(e), t.push(n), t;
+        };
+      }, t.methods.forEach(function(e) {
+        t[e] = t.factory(e);
+      }), t.load = function(t) {
+        var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+        o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+        var i = document.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(o, i);
+      };
+    }
+  };
+  chatWindow();
+  drift.SNIPPET_VERSION = '0.3.1';
+  drift.load('rwtx6gnkrwtc');
+  </script>
+  <!-- End of Async Drift Code -->
+
+</body>
+
+</html>

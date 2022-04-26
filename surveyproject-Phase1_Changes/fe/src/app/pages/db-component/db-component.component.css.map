@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,eAAe,EAAE,QAAQ;CAC1B;;AAED,AAAA,EAAE,CAAC;EACD,gBAAgB;EAChB,MAAM,EAAE,cAAc;CACvB;;AAED,AAAA,EAAE,CAAC;EACD,iBAAiB;EACjB,OAAO,EAAE,MAAM;EACf,KAAK,EAAE,gBAAgB;EACvB,MAAM,EAAE,cAAc;CACvB;;AAED,AAAA,EAAE,CAAC;EACD,gBAAgB;EAChB,MAAM,EAAE,cAAc;CACvB",
+    "sources": [
+        "db-component.component.scss"
+    ],
+    "names": [],
+    "file": "db-component.component.css"
+}

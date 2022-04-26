@@ -1,0 +1,17 @@
+.dropdown-item:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+.dropdown-item {
+  padding: 1rem 1rem !important;
+}
+
+.dropdown-divider {
+  margin: 0 !important;
+}
+
+.user-icon:hover > .icon {
+  color: #04879b !important;
+}
+/*# sourceMappingURL=user-header-common.component.css.map */

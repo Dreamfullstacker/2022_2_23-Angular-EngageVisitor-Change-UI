@@ -1,0 +1,151 @@
+<html>
+
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato|Montserrat:600,7">
+  <style>
+   /*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.rounded-lg {
+  border-radius: 1rem !important;
+}
+
+.text-small {
+  font-size: 0.9rem !important;
+}
+
+.custom-separator {
+  width: 5rem;
+  height: 6px;
+  border-radius: 1rem;
+}
+
+.text-uppercase {
+  letter-spacing: 0.2em;
+}
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+  background: #ffffff;
+  background: -webkit-linear-gradient(to right, #ffffff, #ffffff);
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  color: #514B64;
+  width:100%;
+  min-height: 70vh;
+}
+  </style>
+</head>
+<body>
+<section class="col-lg-12">
+  <div class="container py-5">
+
+    <!-- FOR DEMO PURPOSE -->
+    <header class="text-center mb-5 text-dark">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h3> Upgrade to a Professional plan </h3>
+          <p>Upgrade to use unlimited benifits.<br></p>
+        </div>
+      </div>
+    </header>
+    <!-- END -->
+
+    <div class="row text-center align-items-start">
+      <!-- Pricing Table-->
+      <div class="col-lg-6">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <h3 class="h6 text-uppercase font-weight-bold mb-4">Basic</h3>
+          <h4 class="h4 font-weight-bold">Free<span class="text-small font-weight-normal ml-2"></span></h4>
+
+          <div class="custom-separator mt-2 mb-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled mt-4 mb-5 pl-2 text-small text-left">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> 5 Forms</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>10 Questions</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>100 Responses</li>
+
+          </ul>
+            <!-- <a href="javascript(0)" style="font-size: 12px;" class="mb-5 text-primary"> Refund policy and privacy policy </a> -->
+          <!-- <a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill disabled">Subscribe</a> -->
+        </div>
+      </div>
+      <!-- END -->
+
+
+
+
+      <!-- Pricing Table-->
+      <div class="col-lg-6">
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+          <h3 class="h6 text-uppercase font-weight-bold mb-4">Professional</h3>
+          <h4 class="h4 font-weight-bold" *ngIf="price">{{ (price.price.gross || '').replace('US', '')}}{{" "}}/<span class="text-small pl-1 font-weight-normal">month</span></h4>
+          <h4 class="h4 font-weight-bold" *ngIf="!price">$19<span class="text-small font-weight-normal ml-2"> month</span></h4>
+          <div class="custom-separator mt-2 mb-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled mt-4 mb-5 pl-2 text-small text-left">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>Unlimited Forms</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>Unlimited Questions</li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>Unlimited Responses</li>
+          </ul>
+
+
+
+          <button class="btn btn-primary mt-2 btn-block p-2 shadow rounded-pill" style="background-color:#04AA6D"
+            ngxPaddle
+            [vendor]="132578"
+            [product]="661195"
+            email={{email}}
+            (onCheckoutEvent)="checkEvent($event)"
+          >Upgrade Plan</button>
+        </div>
+      </div>
+      <!-- END -->
+
+
+    </div>
+
+    <div style="padding-top: 16px;
+    text-align: center;">
+
+      <a  [routerLink]="'/terms'" target="_blank" style="font-size: 14px; padding: 12px;" class="mb-4 text-primary"> Refund & privacy policy </a>
+    </div>
+  <div class="Coupon">
+      <form [formGroup]="couponForm">
+
+      <input formControlName="coupon" type="text" class="input-text shadow rounded-pill"
+                                    placeholder="Have a coupon?" style="border: 1px solid;
+                                        border-radius: 18px;
+                                        text-align: center;
+                                        padding: 1rem 2rem;
+                                        width: 280px;">
+      <button class="btn btn-primary shadow rounded-pill" style="padding: 8px;" (click)="applyCoupone()">Apply</button>
+     </form>
+  </div>
+  </div>
+</section>
+</body>
+</html>

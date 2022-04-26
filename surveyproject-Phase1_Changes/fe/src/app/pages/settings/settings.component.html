@@ -1,0 +1,310 @@
+<app-user-header-common page="settings"></app-user-header-common>
+
+<div class="container-fluid cont">
+  <!-- Small boxes (Stat box) -->
+  <div class="row" [@fadeInAnimation]>
+    <div class="col-md-12 mb-2">
+      <!-- general form elements -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title fw4 fs7">Billing Information</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form [formGroup]="billingform">
+          <div class="card-body">
+            <div class="form-group">
+              <label
+                ><span class="fw4 fs5"
+                  >
+
+               <!-- {{    Your Current Plan is }} -->
+
+                  <h3 class="inline" *ngIf="user?.subId">Premium Plan</h3>
+                  <h4 class="inline" *ngIf="!user?.subId">Upgrade to a professional plan for unlimited benefits
+                  </h4>
+                  <button class="btn btn-primary" style="font-size: 24px;margin-top: 20px; padding-left: 50px; padding-right: 50px; " *ngIf="!user?.subId" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="showUpgradeModal()">
+                    Upgrade
+                  </button>
+                </span></label
+              >
+            </div>
+            <div *ngIf="user?.subId" class="row" [@fadeInAnimation]>
+              <div class="col-md-6">
+                <div class="form-group" style="display: none;">
+                  <label
+                    ><span class="fw4 fs5"
+                      >SubScription Id : {{ user?.subId }}</span
+                    ></label
+                  >
+                </div>
+                <div class="form-group">
+                  <label
+                    ><span class="fw4 fs5"
+                      >Your Subscription started on : {{ user?.subDate }}</span
+                    ></label
+                  >
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group" style="display: none;">
+                  <label
+                    ><span class="fw4 fs5"
+                      >SubScription Amount : {{ user?.subAmount }}</span
+                    ></label
+                  >
+                </div>
+                <div class="form-group">
+                  <label
+                    ><span class="fw4 fs5"
+                      >Your next billing cycle is due on : {{ user?.nextDate }}
+                    </span></label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div *ngIf="user?.subId" class="card-footer">
+            <button
+              (click)="cancelBilling()"
+              [disabled]="!profileForm.valid || membershipLoader"
+              type="button"
+              class="btn btn-danger fw3 fs4"
+            >
+              Cancel Membership
+              <i
+                *ngIf="membershipLoader"
+                class="fas fa-circle-notch fa-spin"
+              ></i>
+            </button>
+            &nbsp;
+            <!-- <button type="button" class="btn btn-danger">Cancel</button> -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title fw4 fs7">Update Profile</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form [formGroup]="profileForm">
+          <div class="card-body">
+            <div class="form-group">
+              <label><span class="fw4 fs5">First Name</span></label>
+              <input
+                (keypress)="handleKeyPressProfileForm($event)"
+                formControlName="firstName"
+                type="text"
+                class="form-control fw3 fs5"
+                placeholder="Enter first name here..."
+              />
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  profileForm.get('firstName')?.errors?.required &&
+                  profileForm.get('firstName').dirty
+                "
+              >
+                First name is required
+              </div>
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  profileForm.get('firstName')?.errors?.maxlength &&
+                  profileForm.get('firstName').dirty
+                "
+              >
+                First name should contain maximum 100 charactors only
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1"
+                ><span class="fw4 fs5">Last Name</span></label
+              >
+              <input
+                (keypress)="handleKeyPressProfileForm($event)"
+                formControlName="lastName"
+                type="text"
+                class="form-control fw3 fs5"
+                placeholder="Enter last name here.."
+              />
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  profileForm.get('lastName')?.errors?.maxlength &&
+                  profileForm.get('lastName').dirty
+                "
+              >
+                Last name should contain maximum 100 charactors only
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button
+              (click)="submitProfileForm()"
+              [disabled]="!profileForm.valid || profileFormLoader"
+              type="button"
+              class="btn btn-success fw3 fs4"
+            >
+              Save Changes
+              <i
+                *ngIf="profileFormLoader"
+                class="fas fa-circle-notch fa-spin"
+              ></i>
+            </button>
+            &nbsp;
+            <!-- <button type="button" class="btn btn-danger">Cancel</button> -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title fw4 fs7">Update Password</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form [formGroup]="passwordForm">
+          <div class="card-body">
+            <div class="form-group">
+              <label><span class="fw4 fs5">Password</span></label>
+              <input
+                (keypress)="handleKeyPressPasswordForm($event)"
+                formControlName="password"
+                type="password"
+                class="form-control fw3 fs5"
+                placeholder="Enter new password here..."
+              />
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  passwordForm.get('password')?.errors?.required &&
+                  passwordForm.get('password').dirty
+                "
+              >
+                Password is required
+              </div>
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  (passwordForm.get('password')?.errors?.minlength ||
+                    passwordForm.get('password')?.errors?.maxlength) &&
+                  passwordForm.get('password').dirty
+                "
+              >
+                Password should contain manimum 8 and maximum 30 charactor
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1"
+                ><span class="fw4 fs5">Re-type Password</span></label
+              >
+              <input
+                (keypress)="handleKeyPressPasswordForm($event)"
+                formControlName="reTypePassword"
+                type="password"
+                class="form-control fw3 fs5"
+                placeholder="Re-type new password here..."
+              />
+              <div
+                class="errorMsg text-left mt-2 fw3 fs3"
+                *ngIf="
+                  passwordForm?.errors?.isReTypePasswordNotSame &&
+                  passwordForm.get('reTypePassword').dirty
+                "
+              >
+                Re-type Password value do not match.
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+            <button
+              (click)="submitPasswordForm()"
+              [disabled]="!passwordForm.valid || passwordFormLoader"
+              type="button"
+              class="btn btn-success fw3 fs4"
+            >
+              Save Changes
+              <i
+                *ngIf="passwordFormLoader"
+                class="fas fa-circle-notch fa-spin"
+              ></i>
+            </button>
+            &nbsp;
+            <!-- <button type="button" class="btn btn-danger">Cancel</button> -->
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+
+    <!-- ./col -->
+  </div>
+
+ 
+
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title fw4 fs7">Select Brand Logo</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+          <div class="row" [@fadeInAnimation] >
+
+
+            <div class="col-md-3">
+            <div class="card-body">
+              <form [formGroup]="brandingForm">
+                <div class="form-group">
+               
+                <button type="submit" style class="btn btn-primary btn-sm btn-block" (click)="fileInput.click()">Upload Image</button>
+                 <input type='file' style="visibility: hidden;" id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                 <button type="submit" *ngIf="user.userBrandLogoType" style class="btn btn-primary btn-sm btn-block" (click)="resetCustomLogo()">Clear Image</button>
+                </div> 
+                 
+            </form>
+          </div>
+             
+            </div>
+
+
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+              
+              <img
+              *ngIf="user?.userBrandLogoType"
+              class="myImage"
+              style="width: 96%"
+              
+              src="data:{{ user?.userBrandLogoType }};base64,{{ user?.userBrandLogo }}"
+            />
+            </div>
+          </div>
+         
+          <!-- /.card-body -->
+      
+      <!-- /.card -->
+    </div>
+  <!-- /.row -->
+  <!-- Main row -->
+
+  <!-- /.row (main row) -->
+</div>
+<!-- /.container-fluid -->

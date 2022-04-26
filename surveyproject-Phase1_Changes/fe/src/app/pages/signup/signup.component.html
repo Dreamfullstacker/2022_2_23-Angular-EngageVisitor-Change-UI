@@ -1,0 +1,135 @@
+<div class="login-fg">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-7 col-lg-7 col-md-12 bg side-div"
+          style="background-image:url('/assets/img/wall-5.jpg');" [@fadeInAnimation]>
+          <div class="info" [@fadeInAnimation]>
+              <!-- <h1 class="display-1" style="font-weight: 300; font-size: 4rem;">{{appConst?.APPLICATION_NAME}}
+              </h1>
+              <h1 class="display-1" style="font-weight: 300; font-size: 1.5rem;">Manage you survey effectively.
+              </h1> -->
+          </div>
+      </div>
+      <div class="col-xl-5 col-lg-5 col-md-12 login">
+                <div class="login-section" [@fadeInAnimation]>
+                    <!-- <div class="logo clearfix">
+                        <a>
+                            TYPE FORMS
+                        </a>
+                    </div> -->
+                    <div class="p-2">
+                        <img src="assets/img/ev-logo.png" width="150">
+                    </div>
+                    <h5 class="fs9 fw3">Sign up for free beta access to create and run surveys
+                    </h5>
+                    <!-- <h3>Sign In</h3> -->
+                    <!-- <ul class="social">
+                        <li><a href="#" class="facebook"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                        <li><a href="#" class="twitter"><i class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                        <li><a href="#" class="google"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                    </ul>
+                    <div class="or-login clearfix">
+                        <span>Or</span>
+                    </div> -->
+                    <!-- {{signUpForm.value | json }} -->
+                    <div class="form-container mt-3">
+                        <form [formGroup]="signUpForm">
+                         <!--  <div class="form-group form-fg">
+                                <input formControlName="firstName" type="text" class="input-text rounded-0"
+                                    placeholder="First Name" (keypress)="handleKeyPress($event)">
+                                <i class="fas fa-user-alt"></i>
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm.get('firstName')?.errors?.required  && signUpForm.get('firstName').dirty">
+                                    First name is required
+                                </div>
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm.get('firstName')?.errors?.maxlength  && signUpForm.get('firstName').dirty">
+                                    First name should contain maximum 100 charactors only
+                                </div>
+                            </div> -->
+
+
+
+                           <!-- <div class="form-group form-fg">
+                                <input formControlName="lastName" type="text" class="input-text rounded-0"
+                                    placeholder="Last Name" (keypress)="handleKeyPress($event)">
+                                <i class="fas fa-user-friends"></i>
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm.get('lastName')?.errors?.maxlength  && signUpForm.get('lastName').dirty">
+                                    Last name should contain maximum 100 charactors only
+                                </div>
+                            </div> -->
+                            <div class="form-group form-fg">
+                                <label class="lable text-secondary" >Email Address</label>
+                                 <i class="fa fa-envelope"></i>
+                                <input formControlName="email" type="email" class="input-text pl-5 rounded-0"
+                                    placeholder="Email Address" (keypress)="handleKeyPress($event)">
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm.get('email')?.errors?.required  && signUpForm.get('email').dirty">
+                                    Email is required
+                                </div>
+                            </div>
+                            <div class="form-group form-fg">
+                                <label class="lable text-secondary">Password</label>
+                                 <i class="fa fa-unlock-alt"></i>
+                                <input formControlName="password" type="password" class="input-text pl-5 rounded-0"
+                                    placeholder="Password" (keypress)="handleKeyPress($event)">
+
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm.get('password')?.errors?.required  && signUpForm.get('password').dirty">
+                                    Password is required
+                                </div>
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="(signUpForm.get('password')?.errors?.minlength || signUpForm.get('password')?.errors?.maxlength) && signUpForm.get('password').dirty">
+                                    Password should contain manimum 8 and maximum 30 charactor
+                                </div>
+                            </div>
+                            <div class="form-group form-fg">
+                               <label class="lable text-secondary" >Re-type Password</label>
+                                <i class="fa fa-unlock-alt"></i>
+                                <input formControlName="reTypePassword" type="password" class="input-text pl-5 rounded-0"
+                                    placeholder="Re-type password" (keypress)="handleKeyPress($event)">
+
+                                <!-- <div class="errorMsg text-left mt-2"
+                                    *ngIf="signUpForm.get('reTypePassword')?.errors?.required  && signUpForm.get('reTypePassword').dirty">
+                                    Re-type Password is required
+                                </div> -->
+                                <div class="errorMsg text-left fw3 fs3"
+                                    *ngIf="signUpForm?.errors?.isReTypePasswordNotSame && signUpForm.get('reTypePassword').dirty">
+                                    Re-type Password value do not match.
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="form-check checkbox-fg">
+                                    <input formControlName="agree" class="form-check-input point" type="checkbox"
+                                        id="remember">
+                                    <label class="form-check-label point" for="remember">
+                                        &nbsp; <span class="fw3">I agree to {{appConst?.APPLICATION_NAME | lowercase}}'s
+                                            <a class=" text-info" [routerLink]="'/terms'" target="_blank">Terms of
+                                                Service</a></span>
+                                    </label>
+                                    <div class="errorMsg text-left fw3 fs3"
+                                        *ngIf="signUpForm?.errors?.agreeNotChecked  && signUpForm.get('agree').dirty">
+                                        Kindly agree to our Terms of Service before proceeding
+                                    </div>
+                                    <!-- <a href="#">Forgot Password</a> -->
+                                </div>
+
+                            </div>
+                            <div class="form-group mt-2">
+                                <button (click)="signup()" [disabled]="!signUpForm.valid || signUpFormLoader"
+                                    type="button" class="btn btn-outline-info btn-block rounded-0 fw3 fs5">Create my
+                                    free
+                                    account <i *ngIf="signUpFormLoader"
+                                        class="fas fa-circle-notch fa-spin"></i></button>
+                            </div>
+                            <!-- <button (click)="check()">check</button> -->
+                        </form>
+                    </div>
+                    <p style="font-weight: 300;">Already have an account? <a routerLink="/login"
+                            class="linkButton fw3 text-info"> Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

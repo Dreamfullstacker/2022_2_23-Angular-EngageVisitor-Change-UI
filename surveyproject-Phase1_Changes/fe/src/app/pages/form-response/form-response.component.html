@@ -1,0 +1,598 @@
+<app-loader></app-loader>
+
+<body  style ="font-family:  'this.theme.font'" [ngStyle]="{backgroundImage:'url(./assets/img/back2.jpg)'}">
+
+    <video  *ngIf= "theme &&  theme?.backgroundType == 2 && theme?.bgType" autoplay muted loop id="myVideo" [ngStyle]="this.theme && this.theme.opacity  && {'opacity':  this.theme.opacity}" class="myVideo">
+        <source src="data:{{theme?.bgType}};base64,{{theme?.backgroundData}}" type="video/mp4">
+      </video>
+
+      <img *ngIf= "theme &&  theme?.backgroundType==1 && theme?.bgType" class="myImage"  [ngStyle]="this.theme && this.theme.opacity  && {'opacity':  this.theme.opacity}"  src="data:{{theme?.bgType}};base64,{{theme?.backgroundData}}" />
+
+
+
+<div [ngStyle]="pageType == pageTypeConst.question &&  {'height': heightVar}">
+<div >
+
+    <div class="container">
+
+        <div class="row main-d">
+
+
+            <!-- <div class=" col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                &nbsp;
+                <img class="h-100"
+                    src="../../../assets/img/tinmanhelp1.png"
+                />
+            </div> -->
+
+
+            <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 center-d p-0 m-0"> -->
+                <div class="container-fluid m-0 p-0">
+
+                    <div class="row m-0 p-0 ">
+
+
+
+                        <div class="col-12  m-0 p-0 text-center" *ngIf="pageType == pageTypeConst.welcome && form && showWelcome == 0"
+                            [@fadeInAnimation]>
+                            <div class="question-d form-simple-scroll">
+                                <h1 class="s-5 fw5 py-5 my-5" [ngStyle]="this.theme && this.theme.questionColor && {'color':  '#000000'}" [innerHTML]="form?.title"> </h1>
+                                <h1 class="s-3 fw3 py-5 my-5" [ngStyle]="this.theme && this.theme.questionColor && {'color':  '#000000'}">{{form?.description}}</h1>
+                            </div>
+
+                            <br />
+
+                            <button type="button" class="btn btn-primary btn-lg btn-flat"  (click)="start()">START <i
+                                    class="fa fa-angle-double-right"></i></button>
+
+
+                        </div>
+
+                        <div class="col-12  m-0 p-0 text-center" *ngIf="pageType == pageTypeConst.welcome && form && showWelcome == 1" [@fadeInAnimation]>
+                            {{start()}}
+                        </div>
+
+
+                        <form [formGroup]="surveyForm" style="display: contents;" >
+
+                            <ng-container style="position: relative;"
+                                *ngFor="let quest of surveyForm?.controls.formList.controls; let i = index; let first = first; let last = last;">
+                                  <div  *ngIf="((i == (currentPage - 1)) && pageType == pageTypeConst.question)" class="">
+                                        Question {{i+1}} of {{surveyForm?.controls.formList.controls.length}}
+                                      </div>
+
+                                <ng-container  formArrayName="formList" (keypress)="handleKeyPress($event)">
+
+                                    <ng-container
+                                        *ngIf="((i == (currentPage - 1)) && pageType == pageTypeConst.question)">
+
+
+                                        <!-- <video  *ngIf= "pageType == pageTypeConst.question && quest?.controls?.data?.value?.backgroundType && quest?.controls?.data?.value?.bgType == 2" autoplay muted loop id="myVideo" class="myVideo">
+                                            <source src="data:{{quest?.controls?.data?.value?.backgroundType}};base64,{{quest?.controls?.data?.value?.background}}" type="video/mp4">
+                                          </video>
+
+                                          <img *ngIf= "pageType == pageTypeConst.question && quest?.controls?.data?.value?.backgroundType && quest?.controls?.data?.value?.bgType == 1" class="myImage" src="data:{{quest?.controls?.data?.value?.backgroundType}};base64,{{quest?.controls?.data?.value?.background}}" />
+                                         -->
+
+
+
+                                        <div class="col-1 text-right text-primary font-weight-bold"
+                                            style="line-height: 2; font-size: 19px;">
+                                            <!-- <i *ngIf="!theme?.showQuestionNumber" class='fa fa-arrow-right fs3'></i> -->
+                                            <span *ngIf="theme?.showQuestionNumber" [ngStyle]="this.theme && this.theme.questionColor && {'color':  '#000000'}">{{currentPage}}. </span>
+                                        </div>
+
+
+
+                                        <div class="col-11 m-0 p-0 pr-2 ">
+                                            <div class="container-fluid m-0 p-0">
+                                                <div class="row m-0 p-0">
+                                                    <div class="col-12 m-0 p-0 form-simple-scroll">
+
+
+                                                        <div style="max-height:50px; " class="question mb-3 text-break fw3 s-3 mb-1">
+                                                            <span [ngStyle]="this.theme && this.theme.questionColor && {'color':  '#000000'}" [innerHTML]= "quest?.controls?.data?.value?.question"></span>
+
+
+
+
+                                                        </div>
+                                                        <div style="max-height:50px; "  class="description text-break fw3 s-1 "
+                                                            *ngIf="quest?.controls?.data?.value?.description">
+                                                            <p [ngStyle]="this.theme && this.theme.questionColor && {'color':  this.theme.questionColor}"> {{quest?.controls?.data?.value?.description}}</p>
+
+                                                            <br />
+                                                        </div>
+                                                        <br />
+
+                                                        <ng-container
+                                                            [ngSwitch]="quest?.controls.data.value.questionTypeId">
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.SHORT_TEXT_ID">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+
+                                                                            placeholder="Type your answer here..."
+                                                                            formControlName="answer">
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.LONG_TEXT_ID">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div>
+                                                                        <textarea
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                             rows="3"
+                                                                            placeholder="Type your answer here..."
+                                                                            formControlName="answer"></textarea>
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.DROP_DOWN_ID">
+
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="form-group">
+                                                                        <select
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                            formControlName="answer" (change)="selectionChange($event.target.selectedIndex,quest,false)" style="appearance:auto !important"
+                                                                            [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}">
+
+                                                                            <option [ngValue]="null" class="s-1 fw3">
+                                                                                Select</option>
+                                                                            <option class="s-1 fw3"
+                                                                                [value]="questionOption?.questionOption"
+                                                                                *ngFor="let questionOption of quest?.controls?.data?.value?.questionOptionDTOList; let i = index;">
+                                                                                {{questionOption?.questionOption}}
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </ng-container>
+
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.RADIO">
+
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="form-check"
+                                                                        *ngFor="let questionOption of quest?.controls?.data?.value?.questionOptionDTOList">
+                                                                        <input #rdbtn ngModel [attr.id]="questionOption?.id"
+                                                                            class="form-check-input radio-input point"
+                                                                            type="radio" formControlName="answer"
+                                                                            [value]="questionOption?.questionOption"
+                                                                            (change)="selectionChange(questionOption?.nextQuestionId,quest,true)">
+                                                                        <label [attr.for]="questionOption?.id"
+                                                                        [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}"
+                                                                            class="form-check-label label-d point fw3 s-1 ml-2">{{questionOption?.questionOption}}</label>
+
+                                                                            <input *ngIf="(!questionOption?.id) && rdbtn && rdbtn.checked" type="text" formControlName="answer"
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                            placeholder="Type your answer here...">
+                                                                        </div>
+                                                                    <br />
+                                                                </ng-container>
+
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.CHECK_BOX_ID">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div formArrayName="options" class="form-check">
+                                                                        <div *ngFor="let checkBoxOption of quest?.controls.options.controls; let j = index; let last = last;">
+
+                                                                        <ng-container [formGroupName]="j">
+
+                                                                            <!-- <input #chkId *ngIf="!checkBoxOption?.controls.data.value.id" formControlName="other"
+                                                                                [attr.id]="other"
+                                                                                class="form-check-input checkbox-input point"
+                                                                                type="checkbox"
+                                                                               > -->
+                                                                            <input #chkbx ngModel
+                                                                                [attr.id]="checkBoxOption?.controls.data.value.id"
+                                                                                class="form-check-input checkbox-input point"
+                                                                                type="checkbox"
+                                                                                formControlName="answer">
+                                                                            <label
+                                                                                [attr.for]="checkBoxOption?.controls.data.value.id"
+                                                                                [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}"
+                                                                                class="form-check-label label-d point fw3 s-1 ml-2">{{checkBoxOption?.controls.data.value.questionOption}}</label>
+                                                                        <input *ngIf="(!checkBoxOption?.controls.data.value.id) && chkbx && chkbx.checked" type="text"
+                                                                                class="form-control form-control-lg rounded-0 input-d fw3 s-1"  formControlName="other"
+                                                                                placeholder="Type your answer here...">
+
+                                                                        </ng-container>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.EMAIL">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div>
+                                                                        <input type="email"
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                            placeholder="Type your answer here..."
+                                                                            formControlName="answer">
+                                                                        <div class="errorMsg text-left fw3 fs3"
+                                                                            *ngIf=" surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.errors?.email &&
+                                                                            surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.dirty">
+                                                                            Please enter a valid email address.
+                                                                        </div>
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.NUMBER">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div>
+                                                                        <input type="number"
+                                                                            class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                                placeholder="Type your answer here..."
+                                                                            formControlName="answer">
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.PHONE_NUMBER">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div>
+
+                                                                    <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                                                                    [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                                                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                                                                    [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                                                                    [phoneValidation]="true" [separateDialCode]="true"
+                                                                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="answer" class="form-control-lg"
+                                                                    [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}">
+                                                                 </ngx-intl-tel-input>
+                                                                         <div class="errorMsg text-left fw3 fs3"
+                                                                            *ngIf=" (surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.Invalid &&
+                                                                            surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.dirty)"  >
+                                                                            Please enter a valid phone number.
+                                                                        </div>
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.RATING">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="p-3"
+                                                                        style="width: 280px;">
+                                                                        <span class="star-rating star-5" [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}">
+                                                                            <input type="radio" value="1"
+                                                                                formControlName="answer"><i></i>
+                                                                            <input type="radio" value="2"
+                                                                                formControlName="answer"><i></i>
+                                                                            <input type="radio" value="3"
+                                                                                formControlName="answer"><i></i>
+                                                                            <input type="radio" value="4"
+                                                                                formControlName="answer"><i></i>
+                                                                            <input type="radio" value="5"
+                                                                                formControlName="answer"><i></i>
+                                                                        </span>
+                                                                        <br />
+                                                                    </div>
+                                                                    <br />
+                                                                </ng-container>
+                                                            </div>
+
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.COUNTRY">
+
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="form-group">
+
+                                                                        <select  class="form-control form-control-lg rounded-0 input-d fw3 s-1" style="appearance:auto !important"
+                                                                        name="country"  formControlName="answer" id="country" [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}">
+
+                                                                            <option value="" class="s-1 fw3" disabled selected>Select Country</option>
+                                                                            <option *ngFor="let country of countries" [value]="country.name" class="s-1 fw3">{{country.name}}</option>
+                                                                       </select>
+                                                                    </div>
+                                                                </ng-container>
+
+                                                            </div>
+
+
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.STATEMENT">
+
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="form-group">
+
+                                                                    </div>
+                                                                </ng-container>
+
+                                                            </div>
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.DATE">
+
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div class="form-group">
+                                                                        <input type="date"
+                                                                        class="form-control form-control-lg rounded-0 input-d  fw3 s-1"
+                                                                        formControlName="answer"
+                                                                        placeholder="Select Date">
+
+                                                                    </div>
+                                                                </ng-container>
+
+                                                            </div>
+
+
+                                                            <div *ngSwitchCase="appConst.QUESTION_TYPE.NPS">
+                                                                <ng-container [formGroupName]="i">
+                                                                    <div style="width: 522px;"
+                                                                        class="p-3">
+                                                                        <!-- <div class="btn-group m-1">
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '0' ? ' text-black btn-outline-secondary ': 'btn-secondary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '0')">0</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '1' ? ' btn-outline-danger': 'btn-danger text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '1')">1</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '2' ? 'btn-outline-danger': 'btn-danger text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '2')">2</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '3' ? 'btn-outline-danger': 'btn-danger text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '3')">3</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '4' ? 'btn-outline-danger': 'btn-danger text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '4')">4</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '5' ? 'btn-outline-danger': 'btn-danger text-white' "
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '5')">5</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '6' ? 'btn-outline-danger': 'btn-danger text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '6')">6</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '7' ? ' btn-outline-primary': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '7')">7</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '8' ? 'btn-outline-primary': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '8')">8</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '9' ? 'btn-outline-success': 'btn-success text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '9')">9</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]= 'btn-success text-white'
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '10')">10</button>
+                                                                        </div> -->
+
+
+
+                                                                        <div class="btn-group m-1">
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '0' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                             (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '0')">0</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '1' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                               (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '1')">1</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '2' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '2')">2</button>
+                                                                            <button type="button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '3' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '3')">3</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '4' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '4')">4</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '5' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '5')">5</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '6' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '6')">6</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '7' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '7')">7</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '8' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '8')">8</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '9' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                                (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '9')">9</button>
+                                                                            <button type=" button"
+                                                                                class="btn m-1 rounded"
+                                                                                [ngClass]="surveyForm?.controls?.formList?.controls[i]?.controls?.answer?.value != '10' ? ' text-black btn-outline-secondary ': 'btn-primary text-white'"
+                                                                               (click)="setNPSFormControlValue(surveyForm?.controls?.formList?.controls[i] , '10')">10</button>
+                                                                        </div>
+
+                                                                        <br /><br/>
+
+                                                                        <div *ngIf ="this.npsSelected">
+                                                                            <lable  [ngStyle]="this.theme && this.theme.answerColor && {'-webkit-text-fill-color':  this.theme.answerColor,'transform': styleNone}"
+                                                                            class="form-check-label label-d point fw3 s-1 ml-2">Would you like to add any comment</lable>
+                                                                            <textarea
+                                                                                class="form-control form-control-lg rounded-0 input-d fw3 s-1"
+                                                                                 rows="3"
+                                                                                placeholder="Type your answer here..."
+                                                                                formControlName="npsResponse"></textarea>
+                                                                        </div>
+                                                                        <!-- <div class="pl-2 pt-1 pb-4 pr-2 text-white">
+                                                                            <span style="float: right;"
+                                                                                class=" fw3 fs5">Likely</span>
+                                                                            <span style="float: left;" class="fw3 fs5">
+                                                                                Unlikely</span>
+                                                                        </div> -->
+                                                                    </div>
+
+                                                                    <br />
+                                                                </ng-container>
+
+                                                            </div>
+
+                                                        </ng-container>
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" col-12 m-0 p-0">
+
+                                                 <ng-container *ngIf="(currentPage != maxPage)">
+                                                    <button *ngIf="i !== 0" (click)="previous()" type="button"
+                                                        class="btn btn-primary btn-lg btn-flat mr-2">Back
+                                                    </button>
+                                                         <button  (click)="next()" type="button"
+                                                        class="btn btn-primary btn-lg btn-flat">Next
+                                                    </button>
+                                                </ng-container> 
+
+                                                <ng-container *ngIf="(currentPage == maxPage)  && !isPreview">
+                                                    <button [disabled]="!surveyForm.valid" style="margin-right: 20px;" class="mr-2" (click)="previous()"
+                                                        type="button" class="btn btn-primary btn-lg btn-flat" [ngStyle]="this.theme && this.theme.buttonTextColor && this.theme.buttonColor && {'background-color':  this.theme.buttonColor,'color':this.theme.buttonTextColor} ||
+                                                        this.theme && this.theme.buttonTextColor && {'color':this.theme.buttonTextColor} ||
+                                                        this.theme && this.theme.buttonColor && {'background-color':  this.theme.buttonColor}">Back
+                                                     </button>
+                                                    <button [disabled]="!surveyForm.valid" class="mr-2" (click)="submitSurvey()"
+                                                        type="button" class="btn btn-primary btn-lg btn-flat" [ngStyle]="this.theme && this.theme.buttonTextColor && this.theme.buttonColor && {'background-color':  this.theme.buttonColor,'color':this.theme.buttonTextColor} ||
+                                                        this.theme && this.theme.buttonTextColor && {'color':this.theme.buttonTextColor} ||
+                                                        this.theme && this.theme.buttonColor && {'background-color':  this.theme.buttonColor}">Submit
+                                                     </button>
+                                                </ng-container>
+                                                <div>
+                                                    <br/><br/>
+                                                    <!-- <ng-container *ngIf ="this.npsSelected && quest?.controls.data.value.questionTypeId == appConst.QUESTION_TYPE.NPS">
+                                                        
+                                                        <br />
+                                                    </ng-container> -->
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </ng-container>
+
+                                </ng-container>
+
+                            </ng-container>
+
+                        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="col-12  m-0 p-0 text-center" *ngIf="pageType == pageTypeConst.submitted "
+                            [@fadeInAnimation]>
+
+                            <h1 class="s-5 fw3" [ngStyle]="this.theme && this.theme.questionColor && {'color':  this.theme.questionColor}" >{{form?.thankYouMessage}}</h1>
+                            <br />
+                            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <!-- <button (click)="again()" type="button" class="btn btn-primary btn-lg btn-flat">AGAIN
+                                <i class="fa fa-undo"></i></button> -->
+
+                            <!-- <button type="button" class="btn btn-outline-primary text-white btn-flat btn-lg"
+                                (click)="again()">AGAIN</button>&nbsp; <span class="text-dark">press
+                                <span class="fw5">Enter
+                                    ↵</span></span> -->
+
+                        </div>
+                         <!-- <div class="col-12  m-0 p-0 text-center" *ngIf="pageType == pageTypeConst.submitted && showThankYou ==1" [@fadeInAnimation]>
+                            {{start()}}
+                        </div> -->
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            <!-- </div> -->
+
+            <!-- <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                &nbsp;
+                <img 
+                    src="../../../assets/img/tinmanhelp2.png"
+                />
+            </div> -->
+
+        </div>
+    </div>
+</div>
+</div>
+
+<ng-container  *ngIf="pageType == pageTypeConst.question">
+   <div  class="footerNote"  [ngStyle]="this.theme && this.theme.bgColor && !theme?.backgroundType && {'background-color':  this.theme.bgColor} ">
+    <!--  <div ><span class="fs4 fw4">Question
+            {{currentPage}} of
+            {{maxPage}}</span></div>
+
+    <div class="progress rounded-lg" aria-valuemin="0" aria-valuemax="100"
+        style="height:3px; width: 200px;     margin-top: 3px;  margin-bottom: 3px;">
+        <div class="progress-bar" [style]="'width:'+ (currentPage/maxPage * 100)+'%'"></div>
+    </div> -->
+    <div class="btn-group btn-flat">
+        <button *ngIf="!form.premium" type="button" class="btn btn-primary btn-sm btn-flat" [routerLink]="['/signup']" [ngStyle]="this.theme && this.theme.buttonTextColor && this.theme.buttonColor && {'background-color':  this.theme.buttonColor,'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonTextColor && {'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonColor && {'background-color':  this.theme.buttonColor}"><span class="fs2">Made on
+                {{appConst?.APPLICATION_NAME}}</span></button>
+       
+       <img *ngIf="form.premium && form?.bgType"
+       [routerLink]="['/signup']"
+              style="width:150px; height:45px;"
+              src="data:{{ form?.bgType }};base64,{{ form?.bgData }}"
+            />
+
+
+      <!--  <button [disabled]="currentPage == 1" [ngStyle]="this.theme && this.theme.buttonTextColor && this.theme.buttonColor && {'background-color':  this.theme.buttonColor,'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonTextColor && {'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonColor && {'background-color':  this.theme.buttonColor}" (click)="previous()" type="button"
+            class="btn btn-primary btn-sm btn-flat">Back</button> -->
+      <!--  <button [disabled]="currentPage == maxPage" [ngStyle]="this.theme && this.theme.buttonTextColor && this.theme.buttonColor && {'background-color':  this.theme.buttonColor,'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonTextColor && {'color':this.theme.buttonTextColor} ||
+        this.theme && this.theme.buttonColor && {'background-color':  this.theme.buttonColor}"fo (click)="next()" type="button"
+            class="btn btn-primary btn-sm btn-flat">Next</button> -->
+        <!-- <button (click)="checkFormGroup()" type="button" class="btn btn-primary btn-sm btn-flat">check form
+            group</button> -->
+    </div>
+    </div>
+</ng-container>
+</body>

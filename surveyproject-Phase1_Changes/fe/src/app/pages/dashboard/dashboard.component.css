@@ -1,0 +1,19 @@
+.nav-link.active {
+  background-color: white;
+  border-bottom: 3px solid #17a2b8;
+  border-radius: 0%;
+}
+
+.sidenavbar {
+  height: 95%;
+}
+
+.contentmain {
+  width: 100%;
+  height: 100%;
+}
+
+.sidenav-header-font {
+  font-size: 14px;
+}
+/*# sourceMappingURL=dashboard.component.css.map */

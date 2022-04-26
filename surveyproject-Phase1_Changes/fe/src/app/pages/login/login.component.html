@@ -1,0 +1,134 @@
+<!-- <div class="login-fg" style="height: 100vh; background-image:url('/assets/img/wall-5.jpg');  background-repeat: no-repeat; background-size: cover; background-position: center;" [@fadeInAnimation]> -->
+<div class="login-fg" style="height: 100vh; background-color: rgb(244, 246, 249);" [@fadeInAnimation]>
+    <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="row  align-items-center">
+           <div class="card signup_v4 mb-30">
+                <div class="card-body">
+                    <div class="p-2">
+                        <img src="assets/img/ev-logo.png" width="150" [@fadeInAnimation]>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist" [@fadeInAnimation]>
+                        <li class="nav-item" role="presentation"> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a> </li>
+                        <li class="nav-item" role="presentation"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a> </li>
+                    </ul>
+                    <div class="tab-content px-5" id="myTabContent">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab" [@fadeInAnimation]>
+                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">Sign in with your account</h4>
+                            <form [formGroup]="loginForm">
+                                <div class="form-row">
+                                    <div class="form-group form-fg col-md-12">
+                                        <i class="fa fa-envelope mx-3"></i>
+                                        <label for="inputName">Email</label> 
+                                        <input formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Enter your username" required="" (keypress)="handleLoginKeyPress($event)"> 
+                                        <div class="errorMsg text-left pt-2 fw3 fs3"
+                                            *ngIf="loginForm.get('email')?.errors?.required  && loginForm.get('email').dirty">
+                                            Email is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-fg col-md-12"> 
+                                        <i class="fa fa-unlock-alt mx-3"></i>
+                                        <label for="inputName">Password</label> 
+                                        <input type="password" formControlName="password" class="form-control" id="inputPassword4" placeholder="Enter your password" required="" (keypress)="handleLoginKeyPress($event)"> 
+                                        <div class="errorMsg text-left pt-2 fw3 fs3"
+                                            *ngIf="loginForm.get('password')?.errors?.required  && loginForm.get('password').dirty">
+                                            Password is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                            <!-- <div class="custom-checkbox d-block">
+                                                <label class="custom-control custom-checkbox checkbox-lg">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                        <div class="custom-control-label" for="customCheck1">Remember Password</div>
+                                                </label>
+                                            </div> -->
+                                            Not sure about your password?
+                                            <a routerLink="/forgot-password" target="_blank">Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 mb-3"> 
+                                    <button class="btn btn-primary w-100" [disabled]="!loginForm.valid || loginFormLoader"  type="submit" (click)="login()">Sign in
+                                        <i *ngIf="loginFormLoader" class="fas fa-circle-notch fa-spin"></i>
+                                    </button> 
+                                </div>
+                            </form>
+                            <!-- <div class="social-area">
+                                <h3 class="title">Or</h3>
+                                <p class="text">Sign In with social media</p>
+                                <ul class="social-links">
+                                    <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
+                                    <li> <a href="#"> <i class="fab fa-google-plus-g"></i> </a> </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab" [@fadeInAnimation]>
+                            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">Sign up for free beta access to create and run surveys</h4>
+                            <form [formGroup]="signUpForm">
+                                <!-- <div class="form-row">
+                                    <div class="form-group col-md-12"> <label for="inputName">Your Name</label> <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your name" required=""> </div>
+                                    <div class="form-group col-md-12"> <label for="inputName">Your Username</label> <input type="text" class="form-control" id="inputPassword4" placeholder="Enter your username" required=""> </div>
+                                </div> -->
+                                <div class="form-row form-fg">
+                                    <div class="form-group col-md-12">
+                                        <i class="fa fa-envelope mx-3"></i>
+                                        <label for="inputName">Email Address</label>
+                                        <input formControlName="email" type="email" class="form-control" id="inputEmail4" placeholder="Enter your email address" required=""  (keypress)="handleSignupKeyPress($event)">
+                                        <div class="errorMsg text-left fw3 fs3"
+                                            *ngIf="signUpForm.get('email')?.errors?.required  && signUpForm.get('email').dirty">
+                                            Email is required
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <i class="fa fa-unlock-alt mx-3"></i>
+                                        <label for="inputName">Password</label>
+                                        <input formControlName="password" type="password" class="form-control" id="inputPassword4" placeholder="Enter your password" required=""  (keypress)="handleSignupKeyPress($event)">
+                                        <div class="errorMsg text-left fw3 fs3"
+                                            *ngIf="signUpForm.get('password')?.errors?.required  && signUpForm.get('password').dirty">
+                                            Password is required
+                                        </div>
+                                        <div class="errorMsg text-left fw3 fs3"
+                                            *ngIf="(signUpForm.get('password')?.errors?.minlength || signUpForm.get('password')?.errors?.maxlength) && signUpForm.get('password').dirty">
+                                            Password should contain manimum 8 and maximum 30 charactor
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row form-fg">
+                                    <div class="form-group col-md-12">
+                                        <i class="fa fa-unlock-alt mx-3"></i>
+                                        <label for="inputName">Re-type Password</label>
+                                        <input formControlName="reTypePassword"  type="password" class="form-control" id="inputPassword4" placeholder="Enter your confirm password" required="" (keypress)="handleSignupKeyPress($event)">
+                                        <div class="errorMsg text-left fw3 fs3"
+                                            *ngIf="signUpForm?.errors?.isReTypePasswordNotSame && signUpForm.get('reTypePassword').dirty">
+                                            Re-type Password value do not match.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-row">
+                                    <div class="col-md-12"> 
+                                        <label class="custom-control custom-checkbox checkbox-lg"> 
+                                            <input type="checkbox" formControlName="agree" class="custom-control-input" id="remember">
+                                            <div class="custom-control-label" for="customCheck1">I agree to {{appConst?.APPLICATION_NAME | lowercase}}'s<a [routerLink]="'/terms'" target="_blank">Terms of Service</a></div>
+                                        </label> 
+                                        <div class="errorMsg text-left fw3 fs3"
+                                            *ngIf="signUpForm?.errors?.agreeNotChecked  && signUpForm.get('agree').dirty">
+                                            Kindly agree to our Terms of Service before proceeding
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mt-3 mb-4">
+                                <div class="col-12">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                                        <button (click)="signup()" [disabled]="!signUpForm.valid || signUpFormLoader" class="btn btn-primary mt-3 mt-sm-0 w-100" type="submit">Create my free account
+                                            <i *ngIf="signUpFormLoader"class="fas fa-circle-notch fa-spin"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

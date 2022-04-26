@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .columns {
+    float: left;
+    width: 50%;
+    padding: 8px;
+  }
+  
+  .price {
+    list-style-type: none;
+    border: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  .price:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+  }
+  
+  .price .header {
+    background-color: #111;
+    color: white;
+    font-size: 25px;
+  }
+  
+  .price li {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .price .grey {
+    background-color: #eee;
+    font-size: 20px;
+  }
+  
+  .button {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .Coupon .btn-primary{
+    margin-left: 4px;
+    // margin-top: 11px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 15px;
+    border: 2px solid rgba(58, 133, 191, 0.75);
+    border-radius: 40px;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+  }
+
+  .Coupon input{
+    border: 1px solid;
+    border-radius: 18px;
+    text-align: center;
+    padding: 13px; 
+    width: 200px;
+    height: 15px;   
+  }
+
+  .Coupon{
+    margin-top: 13px;
+    text-align: center
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .columns {
+      width: 100%;
+    }
+    
+
+
+    
+}
+
+::ng-deep .modal-dialog{
+    max-width: 600px !important;
+    width: 600px;
+  }

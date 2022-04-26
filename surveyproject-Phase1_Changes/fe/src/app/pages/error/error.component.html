@@ -1,0 +1,97 @@
+<app-loader></app-loader>
+
+
+
+<!-- <div class="container-fluid full-height" (keypress)="handleKeyPress($event)" tabindex="1">
+    <div class="center-div">
+
+        <div class="container-fluid" [@enterAnimation]>
+            <div>
+                <h1 class="display-3 text-dark">404 PAGE NOT FOUND</h1>
+            </div>
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" [routerLink]="['/login']"
+                class="btn btn-outline-primary btn-lg rounded-0 font-weight-bold text-dark">BACK TO HOME</button>
+            &nbsp; <span class="text-dark">press
+                <strong>Enter
+                    ↵</strong></span>
+        </div>
+
+    </div>
+</div>
+
+
+<div style="position: absolute; top: 90%; right: 5%; float: right">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-sm">Powered By <b>{{applicationName}}</b></button>
+    </div>
+</div> -->
+
+
+<div class="background-d " (keypress)="handleKeyPress($event)">
+    <div class="container-fluid">
+        <div class="row main-d">
+
+
+            <div class=" col-12 col-sm-12 col-md-1 col-lg-2 col-xl-2">
+                &nbsp;
+            </div>
+
+
+            <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 center-d p-0 m-0">
+                <div class="container-fluid m-0 p-0">
+                    <div class="row m-0 p-0">
+
+
+
+                        <div class="col-12  m-0 p-0 text-center" [@fadeInAnimation]>
+                            <div class="question-d form-simple-scroll">
+                                <h1 class="s-6 fw3">404 Page not found.</h1>
+                            </div>
+
+                            <br />
+                            <button type="button" class="btn btn-primary btn-lg btn-flat" [routerLink]="['/login']">BACK
+                                TO HOME <i class="fa fa-home"></i></button>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-1 col-lg-2 col-xl-2">
+                &nbsp;
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<ng-container>
+    <div class="btn-group btn-flat" style="position: absolute; top: 95%; right: 3%">
+        <button type="button" class="btn btn-primary btn-sm btn-flat"><span class="fs2">Made on
+                {{appConst?.APPLICATION_NAME}}</span></button>
+    </div>
+</ng-container>

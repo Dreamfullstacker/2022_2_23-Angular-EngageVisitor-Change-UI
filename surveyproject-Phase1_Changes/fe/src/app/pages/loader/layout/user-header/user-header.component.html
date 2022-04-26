@@ -1,0 +1,194 @@
+<!-- <div class="loaderDiv" >
+Loading
+</div> -->
+
+
+
+<!-- *ngIf="allServ?.loader" -->
+
+<app-loader></app-loader>
+
+<nav class="navbar navbar-light navbar-expand-md bg-white border-bottom shadow-sm" [@fadeInAnimation]>
+
+    <a class="navbar-brand" [routerLink]="['/login']">
+        <img src="assets/img/logonew.png" class="brand-image">
+        <!-- <span class="brand-text fw3 ">{{appConst?.APPLICATION_NAME}}</span> -->
+        <span class="fw3 fs7 ml-3 all-servey-text"> <a [routerLink]="['/form-listing']">All
+                Surveys</a></span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <!-- <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item active">
+                <a [routerLink]="['/form-listing']" class="nav-link">All
+                    Surveys</a>
+            </li>
+            <li class="nav-item">
+
+            </li>
+            <li class="nav-item">
+
+            </li>
+        </ul> -->
+
+        <ul class="navbar-nav ml-auto">
+            <button class="btn btn-primary" style="max-height: '35px';" *ngIf="!isPremium" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="showUpgradeModal()">
+                Upgrade
+              </button>
+            <li class="nav-item dropdown">
+                <a class="nav-link rounded p-2 fw5 text-info mr-3 user-icon" data-toggle="dropdown" href="#">
+                    <!-- <i class="fas fa-user-alt text-info"></i> -->
+                    <!-- &nbsp;<i class="fas fa-angle-down m-0 p-0" style="display: inline;"></i> -->
+                    <!-- {{initials}} -->
+                    <i class="fas fa-user-alt text-info icon" style="display: inline;"></i>&nbsp;<i
+                        class="fas fa-angle-down m-0 p-0 icon text-info" style="display: inline;"></i>
+                </a>
+
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item fw4 fs5">{{allServ?.authServ?.getLoggedUser()?.email}}</span>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item point fw4 fs5" [routerLink]="['/settings']">
+                        <i class="fas fa-user-cog mr-2 fs3 text-warning"></i> Settings
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item point fw4 fs5" (click)="showQuestionModal()">
+                        <i class="fas fa-power-off mr-2 fs3 text-danger"></i>&nbsp;&nbsp;Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-sm bg-white navbar-white text-dark border-bottom">
+
+    <a class="navbar-brand" [routerLink]="['/login']">
+        <img src="assets/img/logo.png" class="brand-image">
+        <span class="brand-text fw3 ">{{appConst?.APPLICATION_NAME}}</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon text-dark"></span>
+    </button>
+
+
+    <div class="navbar-collapse collapse w-100 " id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+                <a [routerLink]="['/form-listing']" class="nav-link fw3 fs7 text-dark" style="line-height: 1.73rem;">All
+                    Surveys</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fas fa-user-alt text-info"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item fw4 fs5">{{allServ?.authServ?.getLoggedUser()?.email}}</span>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item point fw3 fs4" [routerLink]="['/settings']">
+                    <i class="fas fa-user-cog mr-2 fs3"></i> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item point fw3 fs4" (click)="logout()">
+                    <i class="fas fa-power-off mr-2 fs3"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+
+
+
+
+</nav> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+    </ul>
+
+    <li class="nav-item d-none d-sm-inline-block">
+        <a [routerLink]="['/form-listing']" class="text-black">Forms</a>
+    </li>
+
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link active bg-dark" [routerLink]="['/form-listing']">Forms</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab">Create</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab">Share</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab">Result</a></li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+                <i class="fas fa-user-alt"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <span class="dropdown-item dropdown-header">{{allServ?.authServ?.getLoggedUser()?.email}}</span>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item point">
+                    <i class="fas fa-user-cog mr-2"></i> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item point" (click)="logout()">
+                    <i class="fas fa-power-off mr-2"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav> -->
+
+<div class="modal fade" id="addQuestionModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-round p-4">
+            <div class="modal-header border-0 p-0 pb-3">
+                <h4 class="modal-title modal-title fw4 fs12">Are you sure you want to logout?</h4>
+                <button type="button" class="close fw4 fs10" (click)="cancelQuestionModal()" >&times;</button>
+            </div>
+            <!-- <div class=" modal-body border-0 p-0 pb-1">
+                <p class="fw3 fs8">You're about to logout this survey's user.<br />It'll be gone to login and you have to login again.
+                </p>
+            </div> -->
+            <div class="modal-footer border-0 p-0">
+                <button  type="button" class="btn btn-danger fw3 fs4"
+                   (click)="cancelQuestionModal()" >Cancel</button>&nbsp;
+                <button [disabled]="deleteLoader" type="button" class="btn btn-success fw3 fs4"
+                    (click)="logout()">{{deleteLoader ? 'Logouting ' : 'Yes, Logout                    it '}}<i *ngIf="deleteLoader" class="fas fa-circle-notch fa-spin"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

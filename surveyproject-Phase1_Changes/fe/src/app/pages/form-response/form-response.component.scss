@@ -1,0 +1,34 @@
+// .full-height {
+//     background: #1e5d4bb5;
+//     height: 100%;
+// }
+
+// .center-div {
+//     height: 100%;
+//     padding: 12% 25% 5% 25%;
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     margin: auto;
+//     overflow: scroll;
+//     color: white;
+// }
+
+// .btn.btn-flat {
+//     border-radius: 0;
+//     border-width: 1px;
+//     box-shadow: none;
+// }
+.footerNote{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fefef4;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    align-items: stretch;
+     //padding-bottom: 10px;
+     padding-right: 1%;
+}

@@ -1,0 +1,345 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+@import "~ag-grid-community/src/styles/ag-grid.scss";
+@import "~ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-custom-angular {
+  @include ag-theme-alpine((
+    row-border-color: transparent,
+    row-hover-color: null,
+  ));
+
+  .ag-menu-option-active {
+    color: white;
+  }
+}
+
+
+
+html,
+body {
+    height: 100% !important;
+    // margin: 0 !important;
+    font-family: "Roboto", sans-serif !important;
+    //font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" ;
+}
+
+.fw1 {
+    font-weight: 100 !important;
+}
+.fw2 {
+    font-weight: 200 !important;
+}
+.fw3 {
+    font-weight: 300 !important;
+}
+.fw4 {
+    font-weight: 400 !important;
+}
+.fw5 {
+    font-weight: 500 !important;
+}
+.fw6 {
+    font-weight: 600 !important;
+}
+
+.fs1 {
+    font-size: 10px !important;
+}
+.fs2 {
+    font-size: 12px !important;
+}
+.fs3 {
+    font-size: 13px !important;
+}
+.fs4 {
+    font-size: 14px !important;
+}
+.fs5 {
+    font-size: 15px !important;
+}
+.fs6 {
+    font-size: 16px !important;
+}
+.fs7 {
+    font-size: 17px !important;
+}
+.fs8 {
+    font-size: 18px !important;
+}
+.fs9 {
+    font-size: 19px !important;
+}
+.fs10 {
+    font-size: 20px !important;
+}
+.fs11 {
+    font-size: 21px !important;
+}
+.fs12 {
+    font-size: 22px !important;
+}
+
+.nav-font {
+    font-size: 12px !important;
+}
+
+.activebar {
+    background-color: white;
+    border-bottom: 3px solid #17a2b8;
+    border-radius: 0%;
+}
+
+.point {
+    cursor: pointer;
+}
+
+.errorMsg {
+    color: red;
+    padding: 5px;
+}
+
+.mandatory {
+    color: red;
+    display: inline;
+}
+
+// .loaderDiv {
+//     z-index: 999999999;
+//     // border: 16px solid #f3f3f3;
+//     // border-radius: 50%;
+//     // border-top: 16px solid #3498db;
+//     width: 120px;
+//     height: 120px;
+//     // -webkit-animation: spin 2s linear infinite;
+//     // animation: spin 2s linear infinite;
+//     margin: auto;
+//     left: 0;
+//     right: 0;
+//     top: 0;
+//     bottom: 0;
+//     position: fixed;
+//     background-color: red;
+// }
+
+//   @-webkit-keyframes spin {
+//     0% { -webkit-transform: rotate(0deg); }
+//     100% { -webkit-transform: rotate(360deg); }
+//   }
+
+//   @keyframes spin {
+//     0% { transform: rotate(0deg); }
+//     100% { transform: rotate(360deg); }
+//   }
+
+// .flex {
+//     display: flex;
+//     align-items: center;
+// }
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.toast-bottom-center {
+    bottom: 7% !important;
+}
+
+.toast-top-center {
+    top: 7% !important;
+}
+
+.wrapper .content-wrapper {
+    min-height: calc(107vh - 112px) !important;
+}
+
+.modal-round {
+    border-radius: 10px !important;
+}
+
+.cont {
+    padding: 25px 30px !important;
+}
+.wrapper {
+	margin-bottom: 20px;
+}
+
+/*****************************************************
+	Custom styling example bellow.
+*****************************************************/
+
+.iti {
+	display: block !important;
+	margin-bottom: 20px;
+}
+
+.iti .dropdown-menu.country-dropdown {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-color: #c7cace;
+	margin-top: -1px;
+}
+
+.iti .iti__country-list {
+	box-shadow: none;
+	font-size: 14px;
+	margin-left: 0;
+	width: 300px;
+	max-height: 170px;
+    overflow-y: none !important;
+    //z-index: ;
+}
+
+.iti__flag-container.open + input {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.iti .search-container input {
+	font-size: 14px;
+	border-color: #c7cace;
+	border-radius: 0;
+	padding: 5px 10px;
+}
+
+.iti .search-container input:focus {
+	outline: none;
+}
+
+
+
+ngx-intl-tel-input input {
+	height: 44px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #c7cace;
+	border-radius: 4px;
+	font-size: 18px;
+}
+
+ngx-intl-tel-input.ng-invalid.ng-touched input {
+	border: 1px solid #c0392b;
+}
+
+ngx-intl-tel-input input:hover {
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.24);
+}
+
+ngx-intl-tel-input input:focus {
+	outline: none !important;
+	border-color: #3498db;
+	box-shadow: 0 0 0 0 #000;
+}
+
+ngx-intl-tel-input input::-webkit-input-placeholder {
+	color: #bac2c7;
+}
+
+ngx-intl-tel-input input:-ms-input-placeholder {
+	color: #bac2c7;
+}
+
+ngx-intl-tel-input input::-ms-input-placeholder {
+	color: #bac2c7;
+}
+
+ngx-intl-tel-input input::placeholder {
+	color: #bac2c7;
+}
+
+ngx-intl-tel-input input[disabled] {
+	background-color: #e5eaf1;
+}
+
+.myVideo {
+width: 98%;
+  height: 93%;
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+  //opacity: 0.3;
+
+    transform: scale(1.04);
+  }
+
+  .myImage {
+
+    width: 98%;
+      height: 93%;
+      position: absolute;
+      //object-fit: contain;
+      z-index: 0;
+    //  opacity: 0.3;
+
+        transform: scale(1.04);
+      }
+      .myImageTile {
+
+        width: 100%;
+          height: 100%;
+          position: absolute;
+          //object-fit: contain;
+          z-index: 0;
+        //  opacity: 0.3;
+          border-radius: 10px 10px 0px 0px;
+            transform: scale(1.04);
+          }
+          .myImage {
+           width: 100%;
+            height: 100%;
+            position: absolute;
+          //object-fit: contain;
+            z-index: 0;
+        //  opacity: 0.3;
+        //  border-radius: 10px 10px 0px 0px;
+            transform: scale(1.04);
+          }
+.footerDiv{
+    background-color: "white";
+    border-top: 2px solid #f8f9fa;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+@media only screen and (max-width: 768px) {
+  .all-servey-text {
+    display: none;
+  }
+}
+
+
+.ag-header-cell.text-center {
+  .ag-header-cell-label {
+    justify-content: center;
+    font-size: 16px;
+  }
+}
+
+.ag-header-cell.text-bold {
+  .ag-header-cell-label {
+    justify-content: center;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,86 @@
+<div class="login-fg">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-7 col-lg-7 col-md-12 bg side-div"
+          style="background-image:url('/assets/img/wall-5.jpg');" [@fadeInAnimation]>
+          <div class="info" [@fadeInAnimation]>
+              <!-- <h1 class="display-1" style="font-weight: 300; font-size: 4rem;">{{appConst?.APPLICATION_NAME}}
+              </h1>
+              <h1 class="display-1" style="font-weight: 300; font-size: 1.5rem;">Manage you survey effectively.
+              </h1> -->
+          </div>
+      </div>
+      <div class="col-xl-5 col-lg-5 col-md-12 login">
+                <div class="login-section" [@fadeInAnimation]>
+                    <!-- <div class="logo clearfix">
+                        <a>
+                            TYPE FORMS
+                        </a>
+                    </div> -->
+                    <div class="p-2">
+                        <img src="assets/img/ev-logo.png" width="150">
+                    </div>
+
+                    <!-- <<h4 class="display-4">TYPE FORMS</h4> -->
+                    <h5 class="fs9 fw3">Sign in with your account
+                    </h5>
+                    <!-- <h3>Sign In</h3> -->
+                    <!-- <ul class="social">
+                        <li><a href="#" class="facebook"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                        <li><a href="#" class="twitter"><i class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                        <li><a href="#" class="google"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                    </ul>
+                    <div class="or-login clearfix">
+                        <span>Or</span>
+                    </div> -->
+                    <div class="form-container mt-3">
+                        <form [formGroup]="loginForm">
+                            <div class="form-group form-fg">
+                               <label class="lable text-secondary">Email</label>
+                                <input formControlName="email" type="email" class="input-text pl-5 rounded-0"
+                                    (keypress)="handleKeyPress($event)">
+                                <i class="fa fa-envelope"></i>
+                                <div class="errorMsg text-left pt-2 fw3 fs3"
+                                    *ngIf="loginForm.get('email')?.errors?.required  && loginForm.get('email').dirty">
+                                    Email is required
+                                </div>
+                            </div>
+
+                            <div class="form-group form-fg">
+                               <label class="lable text-secondary">Password</label>
+                                <input type="password" formControlName="password" class="input-text pl-5 rounded-0"
+                                    (keypress)="handleKeyPress($event)">
+                                <i class="fa fa-unlock-alt"></i>
+                                <div class="errorMsg text-left pt-2 fw3 fs3"
+                                    *ngIf="loginForm.get('password')?.errors?.required  && loginForm.get('password').dirty">
+                                    Password is required
+                                </div>
+                            </div>
+                            <!-- <div class="checkbox clearfix">
+                                <div class="form-check checkbox-fg">
+                                    <input class="form-check-input" type="checkbox" value="" id="remember">
+                                    <label class="form-check-label" for="remember">
+                                        Remember me
+                                    </label>
+                                    <a href="#">Forgot Password</a>
+                                </div>
+                            </div> -->
+                            <div class="form-group mt-2">
+                                <button [disabled]="!loginForm.valid || loginFormLoader" type="button"
+                                    class="btn btn-outline-info btn-block rounded-0 fw3 fs5" (click)="login()">Sign in
+                                    <i *ngIf="loginFormLoader" class="fas fa-circle-notch fa-spin"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="fw3 fs4">Don't have an account? <a routerLink="/signup" class="linkButton fw3 text-info">
+                            Sign
+                            up</a></p>
+                    <p class="fw3 fs4" style="margin-top: 5px;">Not sure about your password? <a
+                            routerLink="/forgot-password" class="linkButton fw3 text-info"> Forgot Password</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

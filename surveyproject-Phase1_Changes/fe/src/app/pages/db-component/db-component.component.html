@@ -1,0 +1,29 @@
+<app-user-header page="surveys"></app-user-header>
+
+<br/><br/>
+<body class="background-d ">
+<form [formGroup]="queryForm">
+
+    <input formControlName="query" type="text" class="input-text shadow rounded-pill"
+                                  placeholder="Add Query.." style="border: 1px solid;
+                                      border-radius: 18px;
+                                      text-align: center;
+                                      padding: 1rem 2rem;
+                                      width: 500px;">
+    <button class="btn btn-primary shadow rounded-pill" style="padding: 8px;" (click)="executeQuery()">Execute</button>
+   </form>
+<br/>
+   <div>
+       <table>
+           <tr>
+        <th *ngFor="let col of getKeys(dataRows[0]); let i = index;"> 
+            {{col}} &nbsp; &nbsp; </th>
+
+            </tr>
+            <tr *ngFor="let data of dataRows; let i = index;">
+                    <td style=" word-break:break-all; " *ngFor="let col of getKeys(dataRows[0]); let i = index;"> {{data[col]}} </td>
+            </tr>
+            
+       </table>
+   </div>
+</body>

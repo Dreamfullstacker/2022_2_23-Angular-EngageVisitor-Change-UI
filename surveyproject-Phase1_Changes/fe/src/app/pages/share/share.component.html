@@ -1,0 +1,137 @@
+<app-user-header></app-user-header>
+<div class="container-fluid cont" >
+    
+    <div class="col-md-8" *ngIf="(form?.questionDTOList && !showLink)" >
+        <!-- general form elements -->
+        <div class="card" [@fadeInAnimation]>
+            <div class="card-header">
+                <h3 class="card-title fw4 fs7">Fill Common Details first</h3>
+            </div>
+            <form [formGroup]="detailForm">
+                <div class="card-body">
+                    <div class="form-group"  *ngFor="let quest of form?.questionDTOList" >
+
+                        <div class="input-group input-group">
+                            <div class="col-md-8">
+                            <label  class="form-control fw5 fs6 lableProp "  >{{quest?.question}}</label>
+                            </div>
+
+                            <div class="col-md-3" style="float: right;">
+                                <input  type="text" class="form-control fw3 fs4" formControlName={{quest?.id}} placeholder={{quest.description}} required>
+                            </div>
+                           
+                            
+                        </div><br/>
+                       
+                    </div>
+
+                </div>
+                <div class="form-group mt-4">
+                    <button  type="button"
+                        class="btn btn-outline-info btn-block rounded-0 fw3 fs5" (click)="createShareLink()">Generate Link
+                      
+                    </button>
+                    
+                </div>
+    
+            </form>
+        </div>
+        
+    </div>
+    <div class="row" *ngIf=showLink>
+
+      
+        <div class="col-md-4">
+            <!-- general form elements -->
+            <div class="card" [@fadeInAnimation]>
+                <div class="card-header">
+                    <div style="float: right;">
+                        <!-- <button class="btn btn-outline-success btn-sm" (click)="publishUnpublishForm()"
+                                        *ngIf="form?.visibilityStatus ==
+                                    appConst?.FORM_VISIBILITY_STATUS.STATUS_UNPUBLISH" data-toggle="tooltip"
+                                        title="Make your form visible to the world">PUBLISH{{setToolTip()}}</button>
+                                    <button class="btn btn-outline-danger btn-sm" (click)="publishUnpublishForm()"
+                                        *ngIf="form?.visibilityStatus ==
+                                    appConst?.FORM_VISIBILITY_STATUS.STATUS_PUBLISH" data-toggle="tooltip"
+                                        title="Restrict the public access">UNPUBLISH{{setToolTip()}}</button> -->
+
+                    </div>
+                    <h3 class="card-title fw4 fs7">Share your {{appConst?.APPLICATION_NAME | lowercase}}
+                        form</h3>
+
+
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group input-group">
+                                <input disabled type="text" class="form-control fw3 fs4" [value]="formLink">
+                                <span class="input-group-append">
+                                    <button (click)="copyLink()" type="button"
+                                        class="btn btn-primary btn-dark fw3 fs4" >Copy
+                                        link</button>
+                                </span>
+                            </div>
+                        </div>
+						
+                    </div>
+
+                </form>
+            </div>
+            <!-- /.card -->
+
+
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="card" [@fadeInAnimation]>
+                <div class="card-header">
+                    <div style="float: right;">
+                       
+
+                    </div>
+                    <h3 class="card-title fw4 fs7"> Code to embed {{appConst?.APPLICATION_NAME | lowercase}}
+                        form</h3>
+
+
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group input-group">
+                                <input disabled type="text" class="form-control fw3 fs4" [value]="embedLink">
+                                <span class="input-group-append">
+                                    <button (click)="copyEmbedLink()" type="button"
+                                        class="btn btn-primary btn-dark fw3 fs4">Copy
+                                        code</button>
+                                </span>
+                            </div>
+                        </div>
+						
+                    </div>
+
+                </form>
+            </div>
+
+
+        </div>
+		
+		 <div class="col-md-4">
+            <!-- general form elements -->
+
+
+
+        </div>
+
+
+
+        <!-- ./col -->
+    </div>
+
+
+</div>

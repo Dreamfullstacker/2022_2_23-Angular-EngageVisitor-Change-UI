@@ -1,0 +1,132 @@
+<app-user-header></app-user-header>
+<div class="container-fluid cont">
+
+    <div class="row ">
+
+
+        <div class="col-md-4" *ngIf="!answerList">
+
+            <div class="card" [@fadeInAnimation]>
+                <div class="card-header">
+
+                    <h3 class="card-title fw3 fs7" style="line-height: 1.7;">{{form.title}}</h3>
+                </div>
+				<div class="card-header">
+
+                   <div style="float: right;">
+                        <button [disabled]="downloadLoader" class="btn btn-info btn-sm fw3 fs3"
+                            (click)="downloadAllResponses()" *ngIf="answerList && answerList.length != 0"
+                            data-toggle="tooltip" title="Download all responses in CSV file format">Download
+                            All
+                            Responses
+                            <!-- <i class="fas fa-download"></i> -->
+                            &nbsp;<i *ngIf="downloadLoader" class="fas fa-circle-notch fa-spin"></i>
+                        </button>
+                    </div>
+                    <h3 class="card-title fw3 fs7" style="line-height: 1.7;">{{totalResponses}}
+                        responses
+                        in total</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0" *ngIf="answerList && answerList.length != 0">
+
+                  <ag-grid-angular
+                  style="z-index: -1; height: 400px"
+                  class="ag-theme-alpine"
+                  [rowData]="answerList"
+                  [columnDefs]="columnDefs"
+                  rowSelection='single'
+                  (selectionChanged)="onSelectionChanged($event)"
+                >
+                </ag-grid-angular>
+
+                    <table class="table table-hover" style="display: none;">
+                        <tbody>
+                            <tr data-toggle="tooltip" title="Click to see details"
+                                *ngFor="let ans of answerList; let i = index;" class="point fw3 fs5"
+                                (click)="getAnswerDetail(ans.id)">
+                                <td><span class="badge bg-warning p-1"> &nbsp;<i
+                                            class="	fas fa-align-justify"></i>&nbsp;&nbsp;{{i
+                                        +
+                                        1}}&nbsp;</span></td>
+                                <td>{{ans?.createdDateStr}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-md-12" *ngIf="answer" [@fadeInAnimation]>
+            <div class="card card-default">
+
+                <div class="card-header">
+                    <div style="float: right;">
+                        <button [disabled]="downloadSingleLoader" class="btn btn-info btn-sm fw3 fs3"
+                            (click)="downloadResponse()" data-toggle="tooltip"
+                            title="Download this particular response in CSV file format">Download
+                            this Response
+                            <!-- <i class="fas fa-download"></i> -->
+                            &nbsp;<i *ngIf="downloadSingleLoader" class="fas fa-circle-notch fa-spin"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-body">
+
+                  <ag-grid-angular
+                  style="z-index: -1; height: 400px"
+                  class="ag-theme-alpine"
+                  [rowData]="answer"
+                  [columnDefs]="columnDefs1"
+                  (gridReady)="onGridReady($event)"
+                >
+                </ag-grid-angular>
+
+
+                    <div class="container-fluid" style="display: none;">
+                        <div class="row fw3 fs5"
+                            *ngFor="let quest of answer; let i = index; let first = first; let last = last;">
+                            <div class="col-1" style="line-height: 2.3;">
+                                <span class="badge bg-warning p-1 fw3 fs2">
+                                    &nbsp;<i class="	fas fa-align-justify"></i>&nbsp;&nbsp;{{i
+                                    +
+                                    1}}&nbsp;</span>
+                            </div>
+                            <div class="col-11">
+                                <div *ngIf="!last" class="callout callout-warning">
+                                    <span class="fw4 fs5">{{quest?.question}}</span>
+                                    <p *ngFor="let ans2 of quest?.answerDTOList">{{ans2?.answer}}</p>
+                                </div>
+
+                                <div *ngIf="last" class="callout callout-warning"
+                                    style="margin-bottom: 0px !important;">
+                                    <span class="fw4 fs5">{{quest?.question}}</span>
+                                    <p *ngFor="let ans2 of quest?.answerDTOList">{{ans2?.answer}}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+
+
+
+        </div>
+
+
+
+        <!-- ./col -->
+    </div>
+
+</div>

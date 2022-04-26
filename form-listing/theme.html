@@ -1,0 +1,13 @@
+
+   <div *ngIf= "!(form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType)" >
+    <div style="width: 30px;height: 30px;" [style.background-color]="color"></div>
+ </div>
+    <div *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType"  >
+     Image
+ </div>
+
+<!-- <td *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" >
+                      <div *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" >
+                        <img *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" class="myImageTile" style="width:76px; height:40px; border-radius:10px;" [ngStyle]="form.theme && form.theme.opacity  && {'opacity':  form.theme.opacity}"  src="data:{{form.theme?.bgType}};base64,{{form.theme?.backgroundData}}" />
+                     </div>
+                     </td> -->

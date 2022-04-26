@@ -1,0 +1,26 @@
+.nav-link.active {
+    // background: #17a2b8;
+}
+
+.dropdown-item:hover {
+    background-color: black !important;
+    //background-color: #e6f3e6;
+    color: white !important;
+}
+
+.dropdown-item {
+    padding: 1rem 1rem !important;
+}
+
+.dropdown-divider {
+    margin: 0 !important;
+}
+
+.user-icon:hover > .icon {
+    color: #04879b !important;
+}
+
+// .dropdown-menu {
+//     padding: 0 !important;
+// }
+

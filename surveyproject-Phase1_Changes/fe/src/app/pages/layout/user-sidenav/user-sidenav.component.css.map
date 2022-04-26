@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "user-sidenav.component.scss"
+    ],
+    "names": [],
+    "file": "user-sidenav.component.css"
+}

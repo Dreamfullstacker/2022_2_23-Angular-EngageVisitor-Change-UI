@@ -1,0 +1,1182 @@
+<app-user-header page="surveys"></app-user-header>
+
+<div class="container-fluid pt-4">
+  <div class="row d-flex justify-content-end px-5 pt-3"></div>
+
+  <div class="d-flex flex-row justify-content-between">
+    <div>
+      <h4
+        class="ml-5"
+        style="
+          margin-top: 20px;
+          color: #003f83;
+          font-size: 2.25rem;
+          font-weight: bold;
+        "
+      >
+        Let our avance worrying
+      </h4>
+      <h4
+        class="ml-5"
+        style="
+          margin-top: 20px;
+          color: #003f83;
+          font-size: 2.25rem;
+          font-weight: bold;
+        "
+      >
+        become advance thinking and
+      </h4>
+      <h4
+        class="ml-5"
+        style="
+          margin-top: 20px;
+          color: #003f83;
+          font-size: 2.25rem;
+          font-weight: bold;
+        "
+      >
+        plainning
+      </h4>
+      <h4
+        class="ml-5 fw4"
+        style="
+          margin-top: 20px;
+          font-size: 1.25rem;
+          font-weight: normal;
+        "
+      >
+        Thousands Now Adware Removal Who Never
+      </h4>
+      <h4
+        class="ml-5 fw4"
+        style="
+          margin-top: 20px;
+          font-size: 1.25rem;
+          font-weight: normal;
+        "
+      >
+        Thought They Could
+      </h4>
+      <div class="row my-3">
+        <div class="col-8">
+          <div
+            class="small-box point"
+            (click)="addFormModal()"
+            [@fadeInAnimation]
+            style="border-radius: 0px 50px 50px 0px;"
+          >
+            <div
+              class="row inner text-center"
+              style="background: #dddddd; height: 120px;
+              padding: 10px;
+              border-radius: 0px 50px 50px 0px;"
+            >
+              <div class="col-4">
+                <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                    style="width:100px;height:100px; background-color: #c0dfffd7;"
+                  alt="Avatar">
+                  <i class="fas fa-plus fa-3x text-info"></i>
+                </div>
+              </div>
+              <div class="col-8 text-center m-0 d-flex align-items-center justify-content-center">
+                <!-- <h1 class="gradient-3" style="
+                font-size: 80px;
+                color: black;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+                filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.1));
+                font-family: 'Lobster';
+                margin-top: -7rem;
+                background: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+                ">Start from scrach</h1> -->
+                <h5>Start from scrach</h5>
+              </div>
+            </div>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+          </div>
+        </div>
+        
+    
+      </div>
+      
+    </div>
+    
+    <form class="mr-5 mt-2" style="display: none">
+      <label
+        [ngClass]="{ 'text-primary': isTableOrBox === '2' }"
+        id="1"
+        #checked
+        (click)="changeFont(checked)"
+        class="cursor-pointer mr-4 fw4 radio-inline"
+      >
+        <i
+          [ngClass]="{ 'text-primary': isTableOrBox === '2' }"
+          class="fa fa-square fw4 cursor-pointer"
+        ></i>
+        Grid
+      </label>
+      <label
+        [ngClass]="{ 'text-primary': isTableOrBox === '1' }"
+        id="2"
+        #check
+        (click)="changeFont(check)"
+        class="mr-4 fw4 cursor-pointer radio-inline"
+      >
+        <!--<input type="radio" id='2' class="mr-1" #check  (change)="changeFont(check)" name="optradio"> -->
+        <i
+          [ngClass]="{ 'text-primary': isTableOrBox === '1' }"
+          class="fa fa-table cursor-pointer"
+        ></i>
+        Table
+      </label>
+    </form>
+  </div>
+  
+  <div class="row py-3 px-3">
+    <ng-container
+      *ngFor="
+        let dataList of templates;
+        let i = index;
+        let first = first;
+        let last = last
+      "
+      >
+      <div
+        class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3"
+        *ngIf="i < 5 || showAll"
+        >
+        <div
+          class="small-box point"
+          [@fadeInAnimation]
+          style="border-radius: 10px 10px 10px 10px"
+        >
+          <div (click)="preview(dataList)"
+            class="inner text-center"
+            style="height: 155px; padding: 24px 16px"
+          >
+            <div class="row">
+              <div class="col-4 col-sm-6 col-md-4 col-lg-4">
+                <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                    style="width:100px;height:100px; background-color: #c0dfffd7;"
+                  alt="Avatar">
+                  <i class="fas fa-user-alt fa-3x text-info"></i>
+                </div>
+              </div>
+              <div class="col-8 col-sm-6 col-md-8 col-lg-8">
+                <div class="overflow-restrict1 my-3 text-center fw4">
+                  <h4 class = "fs-3 font-weight-bold">{{ dataList.title }}</h4>
+                  <!-- - {{i % 3}} -->
+                </div>
+                <div
+                  style="
+                    display: -webkit-box;
+                    max-width: 100%;
+                    margin: 0 auto;
+                    -webkit-line-clamp: 2;
+                    /* autoprefixer: off */
+                    -webkit-box-orient: vertical;
+                    /* autoprefixer: on */
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
+                >
+                  {{ dataList.description }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="border-top: 1px solid lightgray; padding: 0.85rem"
+            [@fadeInAnimation]
+          >
+            <div style="display: flex; justify-content: space-between">
+              <button
+                style="background: #f4f6f9; border: none"
+                class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+                matBadgePosition="after"
+                matBadgeColor="green"
+                (click)="useThis(dataList)"
+              >
+                <span style="font-weight: normal">Use this Template</span>
+              </button>
+
+              <button
+                style="background: #f4f6f9; border: none"
+                data-toggle="tooltip"
+                title="Preview"
+                (click)="preview(dataList)"
+                class="btn btn-light btn-sm"
+              >
+               <!-- <i class='fa fa-share-v fs2'></i> -->
+
+                <i class="fas fa-eye fs2"></i>
+              </button>
+
+              <!-- <h5 class="fs8 fw3 text-secondary">template 1</h5> -->
+              <!--   <button style="visibility: hidden;" type="button" class="btn btn-sm text-white "
+                            data-toggle="dropdown" aria-expanded="false">
+                            <i class='fas fa-ellipsis-h'></i>
+                        </button> -->
+            </div>
+          </div>
+          <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+        </div>
+      </div>
+    </ng-container>
+    <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+      <div
+        class="small-box point"
+        [@fadeInAnimation]
+        style="border-radius: 10px 10px 10px 10px"
+      >
+        <div
+          class="inner text-center"
+          style="height: 155px; padding: 24px 16px"
+        >
+          <div class="row">
+            <div class="col-4 col-sm-6 col-md-4 col-lg-4">
+              <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                  style="width:100px;height:100px; background-color: #c0dfffd7;"
+                alt="Avatar">
+                <i class="fas fa-user-alt fa-3x text-info"></i>
+              </div>
+            </div>
+            <div class="col-8 col-sm-6 col-md-8 col-lg-8">
+              <div class="overflow-restrict1 my-3 text-center fw4">
+                <h4 class = "fs-3 font-weight-bold">Best Service</h4>
+              </div>
+              <div
+                style="
+                  display: -webkit-box;
+                  max-width: 100%;
+                  margin: 0 auto;
+                  -webkit-line-clamp: 2;
+                  /* autoprefixer: off */
+                  -webkit-box-orient: vertical;
+                  /* autoprefixer: on */
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+              The Skinny On Lcd Monitors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="border-top: 1px solid lightgray; padding: 0.85rem"
+          [@fadeInAnimation]
+        >
+          <div style="display: flex; justify-content: space-between">
+            <button
+              style="background: #f4f6f9; border: none"
+              class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+              matBadgePosition="after"
+              matBadgeColor="green"
+            >
+              <span style="font-weight: normal">Use this Template</span>
+            </button>
+
+            <button
+              style="background: #f4f6f9; border: none"
+              data-toggle="tooltip"
+              title="Preview"
+              class="btn btn-light btn-sm"
+            >
+              <i class="fas fa-eye fs2"></i>
+            </button>
+          </div>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+      <div
+        class="small-box point"
+        [@fadeInAnimation]
+        style="border-radius: 10px 10px 10px 10px"
+      >
+        <div
+          class="inner text-center"
+          style="height: 155px; padding: 24px 16px"
+        >
+          <div class="row">
+            <div class="col-4 col-sm-6 col-md-4 col-lg-4">
+              <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                  style="width:100px;height:100px; background-color: #f1c3ffd7;"
+                alt="Avatar">
+                <i class="far fa-calendar-check fa-3x text-danger"></i>
+              </div>
+            </div>
+            <div class="col-8 col-sm-6 col-md-8 col-lg-8">
+              <div class="overflow-restrict1 my-3 text-center fw4">
+                <h4  class = "fs-3 font-weight-bold">On Time</h4>
+              </div>
+              <div
+                style="
+                  display: -webkit-box;
+                  max-width: 100%;
+                  margin: 0 auto;
+                  -webkit-line-clamp: 2;
+                  /* autoprefixer: off */
+                  -webkit-box-orient: vertical;
+                  /* autoprefixer: on */
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+              The Skinny On Lcd Monitors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="border-top: 1px solid lightgray; padding: 0.85rem"
+          [@fadeInAnimation]
+        >
+          <div style="display: flex; justify-content: space-between">
+            <button
+              style="background: #f4f6f9; border: none"
+              class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+              matBadgePosition="after"
+              matBadgeColor="green"
+            >
+              <span style="font-weight: normal">Use this Template</span>
+            </button>
+
+            <button
+              style="background: #f4f6f9; border: none"
+              data-toggle="tooltip"
+              title="Preview"
+              class="btn btn-light btn-sm"
+            >
+              <i class="fas fa-eye fs2"></i>
+            </button>
+          </div>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+      <div
+        class="small-box point"
+        [@fadeInAnimation]
+        style="border-radius: 10px 10px 10px 10px"
+      >
+        <div
+          class="inner text-center"
+          style="height: 155px; padding: 24px 16px"
+        >
+          <div class="row">
+            <div class="col-4 col-sm-6 col-md-4 col-lg-4">
+              <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                  style="width:100px;height:100px; background-color: #94ffa6d7;"
+                alt="Avatar">
+                <i class="fas fa-wifi fa-3x text-success"></i>
+              </div>
+            </div>
+            <div class="col-8 col-sm-6 col-md-8 col-lg-8">
+              <div class="overflow-restrict1 my-3 text-center fw4">
+                <h4 class = "fs-3 font-weight-bold">Best Performance</h4>
+              </div>
+              <div
+                style="
+                  display: -webkit-box;
+                  max-width: 100%;
+                  margin: 0 auto;
+                  -webkit-line-clamp: 2;
+                  /* autoprefixer: off */
+                  -webkit-box-orient: vertical;
+                  /* autoprefixer: on */
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+              The Skinny On Lcd Monitors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="border-top: 1px solid lightgray; padding: 0.85rem"
+          [@fadeInAnimation]
+        >
+          <div style="display: flex; justify-content: space-between">
+            <button
+              style="background: #f4f6f9; border: none"
+              class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+              matBadgePosition="after"
+              matBadgeColor="green"
+            >
+              <span style="font-weight: normal">Use this Template</span>
+            </button>
+
+            <button
+              style="background: #f4f6f9; border: none"
+              data-toggle="tooltip"
+              title="Preview"
+              class="btn btn-light btn-sm"
+            >
+              <i class="fas fa-eye fs2"></i>
+            </button>
+          </div>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+      <div
+        class="small-box point"
+        [@fadeInAnimation]
+        style="border-radius: 10px 10px 10px 10px"
+      >
+        <div
+          class="inner text-center"
+          style="height: 155px; padding: 24px 16px"
+        >
+          <div class="row">
+            <div class="col-4 col-sm-6 col-md-4 col-lg-4">
+              <div class="rounded-circle border d-flex justify-content-center align-items-center"
+                  style="width:100px;height:100px; background-color: #ebebebd7;"
+                alt="Avatar">
+                <i class="fas fa-user-alt fa-3x text-info"></i>
+              </div>
+            </div>
+            <div class="col-8 col-sm-6 col-md-8 col-lg-8">
+              <div class="overflow-restrict1 my-3 text-center fw4">
+                <h4 class = "fs-3 font-weight-bold">Best Service</h4>
+              </div>
+              <div
+                style="
+                  display: -webkit-box;
+                  max-width: 100%;
+                  margin: 0 auto;
+                  -webkit-line-clamp: 2;
+                  /* autoprefixer: off */
+                  -webkit-box-orient: vertical;
+                  /* autoprefixer: on */
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                "
+              >
+              The Skinny On Lcd Monitors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          style="border-top: 1px solid lightgray; padding: 0.85rem"
+          [@fadeInAnimation]
+        >
+          <div style="display: flex; justify-content: space-between">
+            <button
+              style="background: #f4f6f9; border: none"
+              class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+              matBadgePosition="after"
+              matBadgeColor="green"
+            >
+              <span style="font-weight: normal">Use this Template</span>
+            </button>
+
+            <button
+              style="background: #f4f6f9; border: none"
+              data-toggle="tooltip"
+              title="Preview"
+              class="btn btn-light btn-sm"
+            >
+              <i class="fas fa-eye fs2"></i>
+            </button>
+          </div>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div> -->
+  </div>
+  <div
+    class="row px-5 py-3 ml-2"
+    *ngIf="(templates || []).length > 5"
+    style="
+      color: #007bff;
+      font-size: 1.25rem;
+      font-weight: normal;
+      text-align: right;
+      cursor: pointer;
+      width: 100%;
+      justify-content: right;
+    "
+    (click)="showAll = !showAll"
+  >
+    <span
+      style="
+        color: #fff;
+        cursor: pointer;
+        background-color: #007bff;
+        padding: 6px 18px;
+        border-radius: 4px;
+        border-color: #007bff;
+      "
+    >
+      {{ !showAll ? "Load More" : "Hide" }}
+    </span>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      margin-top: 80px;
+      align-items: center;
+      margin-bottom: 20px;
+    "
+  >
+    <h4
+      class="ml-5"
+      style="
+        color: #007bff;
+        font-size: 1.25rem;
+        font-weight: normal;
+        margin-right: 40px;
+        margin-bottom: 0px;
+      "
+    >
+      Your Surveys
+    </h4>
+
+    <!-- <div style="display: flex; align-items: center">
+      <div>Grid</div>
+      <label
+        class="switch"
+        style="margin-left: 10px; margin-right: 10px; margin-bottom: 0px"
+      >
+        <input type="checkbox" (change)="changeValue()" />
+        <span class="slider round"></span>
+      </label>
+      <div *ngIf="isTableOrBox === '1'">Switch to Table view</div>
+      <div *ngIf="isTableOrBox === '2'">Switch to Grid view</div>
+    </div> -->
+
+    <!-- <form class="ml-3 mt-2" style="display: none;">
+      <label
+        [ngClass]="{ 'text-primary': isTableOrBox === '1' }"
+        id="1"
+        #checked
+        (click)="changeFont(checked)"
+        class="cursor-pointer mr-4 fw4 radio-inline"
+      >
+        <i
+          [ngClass]="{ 'text-primary': isTableOrBox === '1' }"
+          class="fa fa-square fw4 cursor-pointer"
+        ></i>
+        Grid
+      </label>
+      <label
+        [ngClass]="{ 'text-primary': isTableOrBox === '2' }"
+        id="2"
+        #check
+        (click)="changeFont(check)"
+        class="mr-4 fw4 cursor-pointer radio-inline"
+      >
+        <i
+          [ngClass]="{ 'text-primary': isTableOrBox === '2' }"
+          class="fa fa-table cursor-pointer"
+        ></i>
+        Table
+      </label>
+    </form> -->
+  </div>
+
+  <div *ngIf="isTableOrBox === '2'" class="row px-5 py-3">
+    <!-- style="width: 174px; height: 150px;" -->
+
+    <div
+      class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-2"
+      *ngFor="
+        let form of formList;
+        let i = index;
+        let first = first;
+        let last = last
+      "
+      [@fadeInAnimation]
+    >
+      <div class="small-box point">
+        <div
+          (click)="redirectQuestion(form?.id)"
+          class="form form-test"
+          style="padding: 3px 3px 0px 3px; border: 1px solid lightgray"
+          [ngStyle]="
+            (form.theme &&
+              form.theme.bgColor &&
+              !form.theme?.backgroundType &&
+              form.theme.font && {
+                'background-color': form.theme.bgColor,
+                'font-family': form.theme.font
+              }) ||
+            (form.theme &&
+              form.theme.bgColor &&
+              !form?.theme.backgroundType && {
+                'background-color': form.theme.bgColor
+              }) ||
+            (form.theme &&
+              form.theme.font && { 'font-family': form.theme.font })
+          "
+        >
+          <img
+            *ngIf="
+              form.theme &&
+              form.theme?.backgroundType == 1 &&
+              form.theme?.bgType
+            "
+            class="myImage"
+            [ngStyle]="getStyle(form)"
+            src="data:{{ form.theme?.bgType }};base64,{{
+              form.theme?.backgroundData
+            }}"
+          />
+          <div
+            class="inner pl-4 pb-4 pr-4 font-weight-light"
+            style="height: 128px; z-index: 1; padding-top: 40px"
+          >
+            <h5
+              class="text-center overflow-restrict1"
+              [ngStyle]="
+                form.theme &&
+                form.theme.questionColor && { color: form.theme.questionColor }
+              "
+              [innerHTML]="form.title"
+            ></h5>
+            <!-- <span class="title fw4 fs6" [innerHTML]= "form.title"></span> -->
+            <p
+              class="description text-center fw3 fs5 overflow-restrict2"
+              [ngStyle]="
+                form.theme &&
+                form.theme.questionColor && { color: form.theme.questionColor }
+              "
+            >
+              {{ form?.description }}
+            </p>
+          </div>
+          <div class="icon point ml-3" style="opacity: 0.2">
+            <i class="far fa-clipboard"></i>
+          </div>
+        </div>
+        <div class="small-box-footer pt-2 pb-2">
+          <div>
+            <!-- <button class="btn btn-light btn-sm " [routerLink]="['/form-result']"
+                            [queryParams]="{formId:form?.id}"> <span class="fs3"> {{form?.totalResponse}}
+                                responses</span>
+                 -->
+
+            <!-- [matBadge]="form?.totalResponse" -->
+
+            <button
+              *ngIf="form?.totalResponse !== 0"
+              style="background: #f4f6f9; border: none"
+              class="bi-envelope-fill mr-2 btn btn-light btn-sm btn-primary"
+              matBadgePosition="after"
+              matBadgeColor="green"
+              [routerLink]="['/form-result']"
+              [queryParams]="{ formId: form?.id }"
+            >
+              <span
+                style="color: #007bff; font-weight: bold; font-size: 20px"
+                >{{ form?.totalResponse }}</span
+              >
+              Results
+            </button>
+
+            <button
+              style="background: #f4f6f9; border: none"
+              *ngIf="form?.totalResponse === 0"
+              class="bi-envelope-fill btn btn-light btn-sm btn-primary mr-2"
+              [routerLink]="['/form-result']"
+              [queryParams]="{ formId: form?.id }"
+            >
+              No response</button
+            >&nbsp;
+
+            <!-- <h5><span class="badge badge-dark font-weight-light"></span></h5> -->
+          </div>
+          <div>
+            <button
+              style="background: #f4f6f9; border: none"
+              data-toggle="tooltip"
+              title="Share"
+              class="btn btn-light btn-sm"
+              [routerLink]="['/form-share']"
+              [queryParams]="{ formId: form?.id }"
+            >
+              <!-- <i class='fa fa-share-v fs2'></i> -->
+
+              <i class="fas fa-share fs2"></i>
+            </button>
+            <button
+              type="button"
+              style="border: none"
+              class="btn form-option-btn text-secondary text-right btn-sm"
+              data-toggle="dropdown"
+              aria-expanded="false"
+              (click)="showMenu(form)"
+            >
+              <i class="fas fa-ellipsis-v fs2"></i>
+            </button>
+
+            <div
+              class="dropdown-menu"
+              x-placement="bottom-start"
+              style="
+                position: absolute;
+                will-change: transform;
+                top: 0px;
+                left: 0px;
+                transform: translate3d(0px, 38px, 0px);
+              "
+            >
+              <a
+                class="dropdown-item fw3 fs4"
+                (click)="redirectQuestion(form?.id)"
+                >Edit</a
+              >
+              <!-- <a class="dropdown-item fw3 fs4" [routerLink]="['/form-share']"
+                            [queryParams]="{formId:form?.id}">Share</a> -->
+              <a
+                class="dropdown-item fw3 fs4"
+                [routerLink]="['/form-result']"
+                [queryParams]="{ formId: form?.id }"
+                >Results</a
+              >
+              <button
+                class="dropdown-item fw3 fs4"
+                (click)="publishUnpublishForm(form)"
+              >
+                {{ publish }}
+              </button>
+              <button
+                class="dropdown-item fw3 fs4"
+                (click)="renameFormModal(form?.id)"
+              >
+                Rename
+              </button>
+
+              <button class="dropdown-item fw3 fs4" (click)="previews(form)">
+                Preview
+              </button>
+
+              <button
+                class="dropdown-item fw3 fs4"
+                (click)="deleteFormModal(form?.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="last">
+        {{ set() }}
+      </ng-container>
+    </div>
+  </div>
+  <!-- <div *ngif="isTableOrBox === '2'" class="row px-5 pt-0 pb-3">
+    <div class="container-fluid">
+
+    </div>
+  </div> -->
+  <div *ngIf="isTableOrBox === '1'" class="row px-5 pt-0 pb-3">
+    <div class="container-fluid">
+      <div
+        style="
+          margin-left: 99%;
+          z-index: 1;
+          width: 60px;
+          height: 60px;
+          padding: 20px;
+          background: blue;
+          border-radius: 120%;
+        "
+        (click)="addFormModal()"
+        class="fs8 fw4"
+      >
+        <i class="fas fa-plus text-white pb-3 fs12"></i>
+      </div>
+      <!-- <div
+        style="
+          position: fixed;
+          right: 10px;
+          bottom: 10px;
+          z-index: 1;
+          width: 60px;
+          height: 60px;
+          padding: 20px;
+          background: red;
+          border-radius: 120%;
+        "
+        (click)="addFormModal()"
+        class="fs8 fw4"
+      >
+        <i class="fas fa-comment text-white pb-3 fs12"></i>
+      </div> -->
+        <table class="table table-borderless"  style="
+        border-collapse: separate;
+        border-spacing: 0 25px;">
+                <thead>
+                  <tr>
+                    <th class="text-center fw4 " ></th>
+                    <th class="text-center fw4 " >Survey's Name</th>
+                    <!-- <th class="text-center fw4 " style="width: 45%" >Survey's Message</th> -->
+                    <!-- <th class="text-center fw4 " >Theme</th> -->
+                    <th class="text-center fw4 " >Results</th>
+                    <th class="text-center fw4 " >Publish</th>
+                    <th class="text-center fw4 " >Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let form of formList; let i= index; let first = first; let last = last" class="bg-white m-3">
+                    <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                    <td class="text-center d-flex justify-content-center align-items-center" [routerLink]="['/form-create']" [queryParams]="{formId:form?.id}" >
+                        <div class="fw3 fs5 font-weight-bold cursor-pointer" [innerHTML]= "form.title" ></div>
+                        </td>
+                    <!-- <td class="text-center">
+                        <h5 class="description fw3 fs5" >{{form?.description}} </h5>
+                     </td> -->
+                     <!-- <td *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" >
+                      <div *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" >
+                        <img *ngIf= "form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType" class="myImageTile" style="width:76px; height:40px; border-radius:10px;" [ngStyle]="form.theme && form.theme.opacity  && {'opacity':  form.theme.opacity}"  src="data:{{form.theme?.bgType}};base64,{{form.theme?.backgroundData}}" />
+                     </div>
+                     </td> -->
+                     <!-- <td class="fw3 fs5 text-center" *ngIf= "!(form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType)">
+                       <div *ngIf= "!(form.theme &&  form.theme?.backgroundType==1 && form.theme?.bgType)" > {{form.theme.bgColor}} </div>
+                     </td> -->
+                    <td class="text-center">
+                        <!-- <button *ngIf="form?.totalResponse !==0 " class="bi-envelope-fill btn btn-light btn-sm btn-primary"
+                                [matBadge]="form?.totalResponse" matBadgePosition="after" matBadgeColor="green" [routerLink]="['/form-result']" [queryParams]="{formId:form?.id}">
+                                <i  class="far fa-sticky-note cursor-pointer"></i>
+                      </button>
+                      <button *ngIf="form?.totalResponse ===0 " class="bi-envelope-fill btn btn-light btn-sm btn-primary"
+                                 [routerLink]="['/form-result']" [queryParams]="{formId:form?.id}">
+                                 <i class="far fa-sticky-note cursor-pointer"></i>
+                      </button> -->
+                      <h5 class="description fw3 fs5" >{{form?.totalResponse}} </h5>
+                     </td>
+                    <td class="text-center">
+                          <i *ngIf="form.visibilityStatus === '0' " (click)="publishUnpublishForm(form)" class="fa fa-upload cursor-pointer"  style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                          <i *ngIf="form.visibilityStatus ==='1' " (click)="publishUnpublishForm(form)" class="fa fa-download cursor-pointer"  style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                    </td>
+                    <td class="text-center"  style="border-radius: 0px 100px 100px 0px;">
+                     <i [routerLink]="['/form-create']" [queryParams]="{formId:form?.id}" class="far fa-edit cursor-pointer mr-4 text-primary" style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                     <i (click)="deleteFormModal(form?.id)" class="fas fa-trash-alt mr-4 cursor-pointer text-danger" style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                     <i  [routerLink]="['/form-share']" [queryParams]="{formId:form?.id}" class="far fa-paper-plane mr-4 cursor-pointer text-success" style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                     <i (click)="renameFormModal(form?.id)" class="fas fa-pencil-alt mr-4 cursor-pointer text-info" style="border-radius: 50%; border: 1px solid grey; padding: 10px;"></i>
+                    </td>
+                  </tr>
+                  </tbody>
+        </table>
+        <!-- <table class="table table-borderless"  style="
+        border-collapse: separate;
+        border-spacing: 0 25px;">
+                  <tbody>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                    <tr class="bg-white m-3">
+                      <td style="border-radius: 100px 0px 0px 100px;" class="p-3">
+                          <i class="fab fa-react fa-3x bg-primary rounded-circle border-0 p-1"></i>
+                      </td>
+                      <td class="font-weight-bold">Project Selvita Ltd.</td>
+                      <td >
+                        <div class="font-weight-bold">Ali Sayed</div>
+                        <div>Project Incherge</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-primary"><span><i class="fas fa-caret-up"></i></span>71% Return</div>
+                        <div>Project Profit</div>
+                      </td>
+                      <td >
+                        <div class="font-weight-bold text-warning"><span><i class="fas fa-caret-down"></i></span>29% Stuck</div>
+                        <div>Project Loss</div>
+                      </td>
+                      <td style="border-radius: 0px 100px 100px 0px;">
+                        <div class="font-weight-bold text-info"><span><i class="fas fa-comment"></i></span>4 Comment</div>
+                        <div>Comment Chart</div>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table> -->
+              
+      <!-- <ag-grid-angular
+        style="z-index: -1; height: 400px"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+      >
+      </ag-grid-angular> -->
+            
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="formCreateModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0 pb-3">
+        <h4 class="modal-title fw4 fs7">
+          &nbsp;{{ !form ? "Create New Survey" : "Rename Survey" }}
+        </h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelFormModal()"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body border-0 p-0 pb-1">
+        <form [formGroup]="formForm">
+          <div class="form-group">
+            <label class="text-muted">Title</label>
+            <input
+              [attr.disabled]="formLoader ? '' : null"
+              (keypress)="handleKeyPress($event)"
+              type="text"
+              class="form-control fw3 fs4"
+              formControlName="title"
+            />
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('title')?.errors?.required &&
+                formForm.get('title').dirty
+              "
+            >
+              Title is required
+            </div>
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('title')?.errors?.maxlength &&
+                formForm.get('title').dirty
+              "
+            >
+              Title should contain minimum 1 and maximum 250 charactor
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="text-muted">Welcome message</label>
+            <textarea
+              [attr.disabled]="formLoader ? '' : null"
+              (keypress)="handleKeyPress($event)"
+              class="form-control fw3 fs4"
+              rows="4"
+              formControlName="description"
+            ></textarea>
+            <div
+              class="errorMsg fw3 fs3"
+              *ngIf="
+                formForm.get('description')?.errors?.maxlength &&
+                formForm.get('description').dirty
+              "
+            >
+              Description should contain maximum 500 only.
+            </div>
+          </div>
+
+          <!-- <div class="form-group" *ngIf="!form">
+
+                        <select class="form-control fw3 fs4" formControlName="questionDTOList" (ngModelChange)='onTemplateSelect($event)' [(ngModel)]="selectedTemplate">
+                            <option  [ngValue]="null" [selected]="true">Select the Template</option>
+                            <option *ngFor="let template of templates"  [ngValue]="template.questionDTOList">{{template.title}}</option>
+
+                        </select>
+
+                    </div> -->
+        </form>
+      </div>
+      <div class="modal-footer border-0 p-0">
+        <!--  <button [disabled]="formLoader" type="button" class="btn btn-danger fw3 fs4"
+                    (click)="cancelFormModal()">Cancel</button> -->
+        <button
+          [disabled]="formLoader || !formForm.valid"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="submitForm()"
+        >
+          {{ formLoader ? "Saving " : "Save "
+          }}<i *ngIf="formLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="formDeleteModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-round p-4">
+      <div class="modal-header border-0 p-0 pb-3">
+        <h4 class="modal-title modal-title fw4 fs7">Delete this form?</h4>
+        <button
+          type="button"
+          class="close fw4 fs10"
+          (click)="cancelConfirmModal()"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body border-0 p-0 pb-1">
+        <p class="fw3 fs5">
+          You're about to delete this survey.<br />It'll be gone forever and we
+          won't be able to recover it.
+        </p>
+      </div>
+      <div class="modal-footer border-0 p-0">
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-danger fw3 fs4"
+          (click)="cancelConfirmModal()"
+        >
+          Cancel</button
+        >&nbsp;
+        <button
+          [disabled]="deleteLoader"
+          type="button"
+          class="btn btn-success fw3 fs4"
+          (click)="deleteForm()"
+        >
+          {{ deleteLoader ? "Deleting " : "Yes, Delete                    it "
+          }}<i *ngIf="deleteLoader" class="fas fa-circle-notch fa-spin"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAuBA,AAAA,WAAW,CAAA;EACP,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,gBAAgB,EAAE,OAAO;EACzB,aAAa,EAAE,QAAQ;EACvB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,OAAO;EAEnB,aAAa,EAAE,EAAE;CACrB",
+    "sources": [
+        "form-response.component.scss"
+    ],
+    "names": [],
+    "file": "form-response.component.css"
+}
